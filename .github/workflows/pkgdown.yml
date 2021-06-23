@@ -1,7 +1,7 @@
 # from https://raw.githubusercontent.com/tidyverse/dplyr/master/.github/workflows/pkgdown.yaml
 on:
   push:
-    branches: main
+    branches: pkgdown-deploy
 
 name: pkgdown
 
