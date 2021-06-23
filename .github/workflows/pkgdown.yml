@@ -19,7 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          devtools::install_deps(dependencies = TRUE)
+          remotes::install_deps(dependencies = TRUE, upgrade = FALSE)
         shell: Rscript {0}
 
       - name: Install package
