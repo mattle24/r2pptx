@@ -1,0 +1,20 @@
+#' @include generics.R
+
+setClass(
+  "R2PptxSlideList",
+  slots = c(
+    slides = "list"
+  ),
+  prototype = list(
+    slides = list()
+  )
+)
+
+
+setClass(
+  "R2PptxSlide",
+  slots = c(
+    layout_name = "character",
+    objects = list()
+  )
+)

@@ -1,0 +1,5 @@
+"0","title_slide <- new_slide("
+"0","  new_element(key = ""Title 1"", value = ""The title""),"
+"0","  new_element(key = ""Subtitle 2"", value = ""The subtitle""),"
+"0","  layout = ""Title Slide"""
+"0",")"

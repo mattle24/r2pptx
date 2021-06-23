@@ -1,0 +1,26 @@
+#' @include chapter.R
+#' @include generics.R
+
+setClass(
+  "R2PptxPresentation",
+  slots = c(
+    name = "character",
+    chapters = "R2PptxChapterList"
+  )
+)
+
+
+# constructor
+R2PptxPresentation <- function(name, chapters = R2PptxChapterList()) {
+  new("R2PptxPresentation", name = name)
+}
+
+# show method
+setMethod(
+  "show",
+  "R2PptxPresentation",
+  function(object) {
+    cat("This is a presentation named:", object@name)
+  }
+)
+

@@ -1,0 +1,369 @@
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+library(r2ppt)
+library(r2ppt)
+devtools::load_all(".")
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+pres
+R2PptPresentation(mtcars)
+args(getGeneric("show"))
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+pres
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+pres
+signature(ANY)
+signature("ANY")
+signature("ANYxs")
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+pres
+name(pres)
+devtools::load_all(".")
+name(pres)
+devtools::load_all(".")
+name(pres)
+devtools::load_all(".")
+name(pres)
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+name(pres)
+name(pres) <- "New Name"
+devtools::load_all(".")
+name(pres) <- "New Name"
+pres <- R2PptPresentation("My Presentation")
+pres
+name(pres)
+name(pres) <- "New Name"
+devtools::load_all(".")
+name(pres) <- "New Name"
+devtools::load_all(".")
+name(pres) <- "New Name"
+devtools::load_all(".")
+name(pres) <- "New Name"
+name(pres)
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+pres
+name(pres)
+name(pres) <- "New Name"
+name(pres)
+usethis::use_readme_rmd()
+devtools::load_all(".")
+devtools::load_all(".")
+x <- R2PptElement("panel_1", "some text")
+x
+x
+devtools::load_all(".")
+slide <- R2PptSlide(x)
+devtools::load_all(".")
+slide <- R2PptSlide(x)
+devtools::load_all(".")
+slide <- R2PptSlide(x)
+objects
+objects[[1]]
+objects[[2]]
+devtools::load_all(".")
+devtools::load_all(".")
+slide <- R2PptSlide(x)
+devtools::load_all(".")
+list(slide)
+chapter <- R2PptChapter("A new chapter", list(slide))
+presentation <- presentation("My Presentation", chapter)
+presentation <- R2PptChapter("My Presentation", chapter)
+devtools::load_all(".")
+presentation <- R2PptChapter("My Presentation", chapter)
+presentation <- R2PptChapter("My Presentation", list(chapter))
+install.packages("officer")
+x <- officer::read_pptx("~/Downloads/tmp/test_template.key")
+x <- officer::read_pptx("~/Downloads/tmp/test_template.pptx")
+x <- officer::read_pptx("~/Downloads/tmp/test_template.pptx")
+x <- officer::read_pptx("~/Downloads/Untitled presentation.pptx")
+officer::pptx_summary(x)
+x$slideLayouts$get_xfrm_data()
+x$slideLayouts$get_metadata()
+x$slideLayouts$get_xfrm_data()
+template_path <- "~/Downloads/Untitled presentation.pptx"
+devtools::load_all(".")
+presentation <- R2PptChapter("My Presentation", template_path, list(chapter))
+devtools::load_all(".")
+presentation <- R2PptChapter("My Presentation", template_path, list(chapter))
+presentation <- R2PptPresentation("My Presentation", template_path, list(chapter))
+presentation
+x$slideLayouts$get_metadata()
+x$slideLayouts$get_xfrm_data() |>
+dplyr::filter(name == "TITLE_AND_BODY")
+devtools::load_all(".")
+name(pres) + 1
+devtools::load_all(".")
+name(pres) + name(pres)
+devtools::load_all(".")
+"x" + "y"
+devtools::load_all(".")
+pres + pres
+devtools::load_all(".")
+pres + pres
+devtools::load_all(".")
+pres + chapter
+devtools::load_all(".")
+pres + chapter
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation@chapters
+length(presentation@chapters)
+presentation <- presentation + chapter
+length(presentation)
+length(presentation@chapters)
+x$slideLayouts$get_xfrm_data() |>
+dplyr::filter(name == "TITLE_AND_BODY")
+x$slideLayouts$get_xfrm_data() |>
+dplyr::filter(name == "TITLE_AND_BODY") |>
+dplyr::pull(ph_label)
+z <- layout_properties(x, layout = "Title and Content")
+z <- officer::layout_properties(x, layout = "Title and Content")
+z
+z <- officer::layout_properties(x, layout = "TITLE_AND_BODY")
+z
+x <- R2PptElement("Google Shape;18;p4", "some text")
+x
+slide <- R2PptSlide(x)
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+write_pptx(presentation)
+devtools::load_all(".")
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+write_pptx(presentation)
+pptx_obj <- officer::read_pptx(path = x@template_path)
+pptx_obj
+chapter@slides
+pptx_obj$masterLayouts
+pptx_obj$masterLayouts$names()
+officer::ph_with
+?officer::ph_with
+devtools::load_all(".")
+pres <- R2PptPresentation("My Presentation")
+x <- R2PptElement("Google Shape;18;p4", "some text")
+x
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+write_pptx(presentation)
+element@key@location
+path <- tempfile(fileext = ".pptx")
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+write_pptx(presentation, path)
+x@template_path
+pptx_obj <- officer::read_pptx(path = x@template_path)
+pptx_obj$slideLayouts
+pptx_obj$slideLayouts()
+pptx_obj$slideLayouts
+pptx_obj$slideLayouts$get_xfrm_data()
+devtools::load_all(".")
+devtools::load_all(".")
+x <- R2PptElement("Google Shape;18;p4", "some text")
+x
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+my_plot
+x <- R2PptElement("Google Shape;18;p4", my_plot)
+x
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter", list(slide))
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+devtools::load_all(".")
+system(paste("open", path))
+write_pptx(presentation, path)
+system(paste("open", path))
+system(paste("open", path))
+args(getGeneric("length"))
+chapter <- R2PptChapter("A new chapter")
+chapter <- chapter + slide
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+chapter <- chapter + slide
+devtools::load_all(".")
+setMethod(
+"+",
+signature = signature(e1 = "ANY", e2 = "R2PptSlide"),
+function(e1, e2) {
+addSlide(e1, e2)
+}
+)
+devtools::load_all(".")
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+x <- R2PptElement("Google Shape;18;p4", my_plot)
+x
+slide <- R2PptSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptChapter("A new chapter")
+chapter <- chapter + slide
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+devtools::load_all(".")
+slide <- PptxMagicSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- PptxMagicChapter("A new chapter")
+chapter <- chapter + slide
+presentation <- PptxMagicPresentation("My Presentation", template_path)
+devtools::load_all(".")
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+x <- PptxMagicElement("Google Shape;18;p4", my_plot)
+x
+slide <- PptxMagicSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- PptxMagicChapter("A new chapter")
+chapter <- chapter + slide
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- PptxMagicPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+x <- R2PptxElement("Google Shape;18;p4", my_plot)
+devtools::load_all(".")
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+x <- R2PptxElement("Google Shape;18;p4", my_plot)
+x
+slide <- R2PptxSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptxChapter("A new chapter")
+chapter <- chapter + slide
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptxPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+?element
+??element
+?chapter
+?presentation
+?slide
+?add_slide
+"x" + slide
+x <- officer::read_pptx("~/Downloads/Untitled presentation.pptx")
+officer::plot_layout_properties(x)
+officer::plot_layout_properties(x, "TITLE_AND_BODY")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+x$slideLayouts$get_metadata()
+officer::layout_summary(x)
+devtools::load_all(".")
+library(ggplot2)
+my_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+geom_point()
+x <- R2PptxElement("Google Shape;18;p4", my_plot)
+x
+slide <- R2PptxSlide(x, layout_name = "TITLE_AND_BODY")
+chapter <- R2PptxChapter("A new chapter")
+chapter <- chapter + slide
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptxPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+system(paste("open", path))
+devtools::load_all(".")
+length(presentation)
+devtools::load_all(".")
+length(chapter)
+length(slide)
+slide <- R2PptxSlide(x, x, layout_name = "TITLE_AND_BODY")
+length(slide)
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+devtools::load_all(".")
+slide <- R2PptxSlide(layout_name = "TITLE_AND_BODY")
+slide <- slide + x
+chapter <- R2PptxChapter("A new chapter")
+chapter <- chapter + slide
+template_path <- "~/Downloads/Untitled presentation.pptx"
+presentation <- R2PptxPresentation("My Presentation", template_path)
+presentation <- presentation + chapter
+path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, path)
+length(presentation)
+length(chapter)
+length(slide)
+system(paste("open", path))
+devtools::load_all(".")
+x <- R2PptxElement("Google Shape;18;p4", my_plot)
+x
+slide <- R2PptxSlide(layout_name = "TITLE_AND_BODY")
+slide <- slide + x
+x <- officer::read_pptx()
+x$slideLayouts$get_xfrm_data()
+class("x")
+class(list())
+inherits(chapter, "R2PptxChapter")
+devtools::load_all(".")
+chapter <- R2PptxChapter("A new chapter")
+devtools::load_all(".")
+chapter <- R2PptxChapter("A new chapter")
+chapter <- chapter + slide
+devtools::load_all(".")
+chapter <- R2PptxChapter("A new chapter")
+chapter <- chapter + slide
+chapter <- chapter + "slide"
+?R2PptxChapter
+?lubridate::period
+?R2pptxchapter
+class?R2pptxchapter
+class?
+class?R2pptxChapter
+class?R2pptxChapter

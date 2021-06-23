@@ -1,0 +1,48 @@
+#' @include slide.R
+#' @include generics.R
+NULL
+
+setClass(
+  "R2PptxChapterList",
+  slots = c(
+    name = "character",
+    chapters = "list"
+  ),
+  prototype = list(
+    chapters = list()
+  )
+)
+
+R2PptxChapterList <- function(name = "") {
+  new("R2PptxChapterList", name = name)
+}
+
+
+setClass(
+  "R2PptxChapter",
+  slots = c(
+    name = "character",
+    slides = "list"
+  )
+)
+
+R2PptxChapter <- function(name, slides = list()) {
+  new("R2PptxChapter", name = name, slides = slides)
+}
+
+
+# add slide ---------------------------------------------------------------
+
+setMethod(
+  "addSlide",
+  signature = signature(e1 = "R2PptxChapter", e2 = "R2PptxSlide"),
+  function(e1, e2) {
+    e1@slides <- append(e1@slides, e2)
+    e1
+  }
+)
+
+
+# length ------------------------------------------------------------------
+
+setMethod("length", "R2PptxChapter", function(x) length(x@slides))

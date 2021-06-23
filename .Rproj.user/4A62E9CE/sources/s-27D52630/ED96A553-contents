@@ -1,0 +1,29 @@
+#' @import methods
+NULL
+
+# name --------------------------------------------------------------------
+
+setGeneric("name", function(x) standardGeneric("name"))
+setMethod("name", signature = signature("ANY"), function(x) x@name)
+
+setGeneric("name<-", function(x, value) standardGeneric("name<-"))
+# TODO not for everything!
+setMethod("name<-", signature = signature("ANY"), function(x, value) {
+  x@name <- value
+  validObject(x)
+  x
+})
+
+
+# write -------------------------------------------------------------------
+
+setGeneric("write_pptx", function(x, path, ...) standardGeneric("write_pptx"))
+
+# append slide ---------------------------------------------------------------
+
+setGeneric("append_slide", function(e1, e2) standardGeneric("append_slide"))
+
+# append element -------------------------------------------------------------
+
+setGeneric("append_element", function(e1, e2) standardGeneric("append_element"))
+

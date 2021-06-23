@@ -1,0 +1,17 @@
+#' @include generics.R
+#' @include location.R
+#' An element is text, a flextable, an image, or a ggplot2 we add to a slide.
+
+setClass(
+  "R2PptxElement",
+  slots = c(
+    key = "R2PptxLocation",
+    value = "ANY"
+  )
+)
+
+R2PptxElement <- function(key, value) {
+  new("R2PptxElement", key = asR2PptxLocation(key), value = value)
+}
+
+element <- R2PptxElement

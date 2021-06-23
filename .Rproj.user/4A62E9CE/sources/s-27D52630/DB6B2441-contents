@@ -1,0 +1,107 @@
+---
+title: "basic_usage"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{basic_usage}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ggplot2)
+library(r2pptx)
+```
+
+Let's go through how to make a basic presentation using `rpptx`!
+
+`rpptx` leverages the power of the `officer` package and the ease of use of powerpoint
+templates to create a simple and easy to use API to create powerpoint slide decks
+straight from R. Therefore, the first thing we need to do is to choose a powerpoint
+template. This is a normal `.pptx` file that has the template we want in `Slide Master`. By default, `rpptx` uses the default template in `officer`, which seems 
+like a slight variation on the default Microsoft powerpoint template.
+
+Let's start by creating a `presentation`.
+
+```{r}
+presentation <- new_presentation()
+print(presentation)
+print(template_path(presentation))
+```
+
+We can see this is an empty presentation with the template path set to the default
+`officer` template. What's in this template? We can check easily using some utility functions.
+
+```{r}
+get_layouts(presentation)
+```
+
+This template has seven different layouts. That's good to know, but it doesn't help us
+entirely figure out which layout to use for which purpose. Let's keep going!
+
+```{r}
+layouts <- get_layouts(presentation)$layout
+for (layout in layouts) {
+  plot_layout(presentation, layout)
+  title(main = layout)
+}
+```
+
+Now we can see for each slide layout what options we have to use as placeholders! Knowing this, we can move forward and start constructing our presentation!
+
+In `r2pptx` syntax, `presentations` are made up of `slides` which are made up of `elements`. `elements` represent anything we want to add to the deck -- text, plots, images, tables, etc. Anything compatible with the `officer` package works here!
+
+We start out making a title slide with a title and subtitle. We give `elements` for
+the title and subtitle as arguments to the `new_slide()` function. And we give "Title Slide" 
+as the layout name, per the information from above.
+
+```{r}
+title_slide <- new_slide(
+  new_element(key = "Title 1", value = "The title"),
+  new_element(key = "Subtitle 2", value = "The subtitle"),
+  layout = "Title Slide"
+)
+```
+
+Now we add the title slide to our presentation.
+
+```{r}
+presentation <- presentation + title_slide
+```
+
+Easy!
+
+Let's add another slide with a ggplot. This time, we'll add the `elements` to the `slide`
+rather than initializing the `slide` with `elements`.
+
+```{r}
+plot_slide <- new_slide(layout = "Title and Content")
+title_element <- new_element(key = "Title 1", value = "A plot")
+cars_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) + 
+  geom_point()
+plot_element <- new_element(key = "Content Placeholder 2", value = cars_plot)
+
+plot_slide <- plot_slide +
+  title_element +
+  plot_element
+
+presentation <- presentation +
+  plot_slide
+```
+
+And then we can write the `presentation` to powerpoint.
+
+```{r}
+ppt_path <- tempfile(fileext = ".pptx")
+write_pptx(presentation, ppt_path)
+if (interactive()) system(paste("open", ppt_path))
+```
+
+And you have a slide deck! Congrats!
+

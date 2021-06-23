@@ -1,0 +1,37 @@
+#' @include slide.R
+#' @include generics.R
+NULL
+
+
+#' Chapter
+#'
+#' An S4 class to represent "chapters", a group of powerpoint slides.
+#' @slot name character. Name of the chapter.
+#' @slot slides list. List of `R2PpptxSlide` objects.
+#' @export
+setClass(
+  "R2PptxChapter",
+  slots = c(
+    name = "character",
+    slides = "list"
+  )
+)
+
+
+
+# add slide ---------------------------------------------------------------
+
+setMethod(
+  "append_slide",
+  signature = signature(e1 = "R2PptxChapter", e2 = "R2PptxSlide"),
+  function(e1, e2) {
+    e1@slides <- append(e1@slides, e2)
+    validObject(e1)
+    e1
+  }
+)
+
+
+# length ------------------------------------------------------------------
+
+setMethod("length", "R2PptxChapter", function(x) length(x@slides))

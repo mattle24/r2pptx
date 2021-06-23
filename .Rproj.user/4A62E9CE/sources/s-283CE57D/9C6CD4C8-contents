@@ -1,0 +1,14 @@
+
+
+x <- officer::read_pptx("~/Downloads/Untitled presentation.pptx")
+z <- officer::layout_properties(x, layout = "TITLE_AND_BODY")
+z
+officer::pptx_summary(x)
+x$slideLayouts$get_xfrm_data() |> 
+  dplyr::filter(name == "TITLE_AND_BODY") |> 
+  dplyr::pull(ph_label)
+
+x$slideLayouts$get_metadata()
+
+officer::layout_summary(x)
+officer::plot_layout_properties(x, "TITLE_AND_BODY")

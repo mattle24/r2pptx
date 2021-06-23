@@ -1,0 +1,39 @@
+Package: r2pptx
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.0.0.9001
+Authors@R: 
+    c(person(given = "Matt",
+             family = "Lehman",
+             role = c("aut", "cre"),
+             email = "mhlehman24@gmail.com")
+    )
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 4.1.0)
+Imports:
+    methods,
+    officer,
+    purrr
+Suggests:
+    ggplot2,
+    flextable,
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+Collate: 
+    'location.R'
+    'generics.R'
+    'element.R'
+    'slide.R'
+    'presentation.R'
+    'methods.R'
+    'utils.R'
+    'zzz.R'
+Config/testthat/edition: 3
+VignetteBuilder: knitr
