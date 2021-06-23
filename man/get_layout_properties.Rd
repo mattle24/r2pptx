@@ -12,6 +12,6 @@ get_layout_properties(x, layout)
 \item{layout}{character. Name of the layout to see properties for.}
 }
 \description{
-A thin wrapper around `officer::plot_layout_properties()` to plot
-layouts for `R2PpptxPresentation` objects.
+A thin wrapper around `officer::plot_layout_properties()` to get layouts
+properties for `R2PpptxPresentation` objects.
 }

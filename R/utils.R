@@ -13,8 +13,8 @@ plot_layout <- function(x, layout) {
 
 #' Get layouts
 #'
-#' A thin wrapper around `officer::layout_summary()` to plot
-#' layouts for `R2PpptxPresentation` objects.
+#' A thin wrapper around `officer::layout_summary()` to get layouts for
+#' `R2PpptxPresentation` objects.
 #' @param x R2PpptxPresentation object
 #' @param layout character. Name of the layout to see properties for.
 #' @export
@@ -26,8 +26,8 @@ get_layouts <- function(x) {
 
 #' Gets layout properties
 #'
-#' A thin wrapper around `officer::plot_layout_properties()` to plot
-#' layouts for `R2PpptxPresentation` objects.
+#' A thin wrapper around `officer::plot_layout_properties()` to get layouts
+#' properties for `R2PpptxPresentation` objects.
 #' @param x R2PpptxPresentation object
 #' @param layout character. Name of the layout to see properties for.
 #' @export

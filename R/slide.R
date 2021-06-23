@@ -13,6 +13,13 @@ setClass(
 )
 
 
+#' Slide
+#'
+#' An S4 class to represent a powerpoint slide
+#' @slot layout character. Name of the powerpoint layout to use for this
+#'   slide.
+#' @slot elements list. List of `R2PptxElement` objects.
+#' @export
 setClass(
   "R2PptxSlide",
   slots = c(

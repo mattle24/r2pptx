@@ -8,6 +8,7 @@ NULL
 #' @slot slides list. List of `R2PptxSlide` objects.
 #' @slot template_path character. File path to the Powerpoint template used
 #' for this presentation.
+#' @export
 setClass(
   "R2PptxPresentation",
   slots = c(
