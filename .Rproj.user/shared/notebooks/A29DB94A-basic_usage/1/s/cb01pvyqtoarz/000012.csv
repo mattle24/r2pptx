@@ -1,3 +1,0 @@
-"0","ppt_path <- tempfile(fileext = "".pptx"")"
-"0","write_pptx(presentation, ppt_path)"
-"0","if (interactive()) system(paste(""open"", ppt_path))"

@@ -1,5 +1,0 @@
-"0","layouts <- get_layouts(presentation)$layout"
-"0","for (layout in layouts) {"
-"0","  plot_layout(presentation, layout)"
-"0","  title(main = layout)"
-"0","}"

@@ -1,3 +1,0 @@
-lo <- officer::read_pptx("~/Downloads/Untitled presentation.pptx")
-lo$slideLayouts$get_xfrm_data()
-officer::layout_summary(lo)
