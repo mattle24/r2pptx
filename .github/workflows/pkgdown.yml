@@ -27,7 +27,6 @@ jobs:
       - name: Install package
         run: R CMD INSTALL .
 
-pkgdown::deploy_to_branch()
       - name: Deploy package
         run: |
           git config --local user.email "actions@github.com"
