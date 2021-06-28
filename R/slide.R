@@ -22,15 +22,18 @@ setClass(
 #' New slide
 #'
 #' Make a `R2PptxSlide` object representing a powerpoint slide.
-#' @param ... `R2PptxElements` to initialize the slide with
 #' @param layout character. Name of the powerpoint layout to use for this
 #'   slide.
+#' @param elements list. List of `R2PptxElements` to initialize the slide with.
+#'   Defaults to empty list.
 #' @export
-new_slide <- function(..., layout) {
+new_slide <- function(layout, elements = list()) {
   if (missing(layout)) {
     rlang::abort("`layout` was missing. See `officer::plot_layout_properties()` for key options.")
   }
-  elements <- list(...)
+  if (is(elements, "R2PptxElement")) {
+    elements <- list(elements)
+  }
   new("R2PptxSlide", layout = layout, elements = elements)
 }
 

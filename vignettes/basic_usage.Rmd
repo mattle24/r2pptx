@@ -63,9 +63,11 @@ as the layout name, per the information from above.
 
 ```{r}
 title_slide <- new_slide(
-  new_element(key = "Title 1", value = "The title"),
-  new_element(key = "Subtitle 2", value = "The subtitle"),
-  layout = "Title Slide"
+  layout = "Title Slide",
+  elements = list(
+    new_element(key = "Title 1", value = "The title"),
+    new_element(key = "Subtitle 2", value = "The subtitle")  
+  )
 )
 ```
 
@@ -85,10 +87,14 @@ Let's add another slide with a ggplot. This time, we'll add the `elements` to th
 rather than initializing the `slide` with `elements`.
 
 ```{r}
+# create the slide object
 plot_slide <- new_slide(layout = "Title and Content")
+# create an element for the title element
 title_element <- new_element(key = "Title 1", value = "A plot")
+# create a ggplot
 cars_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) + 
   geom_point()
+# create an element for the plot
 plot_element <- new_element(key = "Content Placeholder 2", value = cars_plot)
 
 plot_slide <- plot_slide +

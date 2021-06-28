@@ -47,3 +47,25 @@ describe("append_slide", {
     expect_is_r2pptx_slide_list(x)
   })
 })
+
+
+describe("new_slide", {
+  it("works when input elements is an element", {
+    e <- new_element(key = "test", value = "test")
+    x <- new_slide(layout = "test", e)
+    expect_true(is(x, "R2PptxSlide"))
+    expect_equal(x@elements, list(e))
+  })
+  it("works when input element sis a list of elements", {
+    e <- new_element(key = "test", value = "test")
+    x <- new_slide(layout = "test", list(e))
+    expect_true(is(x, "R2PptxSlide"))
+    expect_equal(x@elements, list(e))
+  })
+  it("fails when input elements is other than expected", {
+    expect_error(new_slide("test", "lol"))
+  })
+  it("fails when layout is missing", {
+    expect_error(new_slide())
+  })
+})
