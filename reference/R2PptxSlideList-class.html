@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Element — R2PptxElement-class • r2pptx</title>
+<title>Slide list — R2PptxSlideList-class • r2pptx</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,10 @@
 
 
 
-<meta property="og:title" content="Element — R2PptxElement-class" />
-<meta property="og:description" content="An S4 An class to represent text, a flextable, an image, a ggplot2, etc we
-add to a slide." />
+<meta property="og:title" content="Slide list — R2PptxSlideList-class" />
+<meta property="og:description" content="`R2PptxSlideList` is an S4 class to contain groups of `R2PptxSlide` objects
+that are not part of a presentation. It is meant to be used to create lists
+of slides and then be able to add the list easily to a presentation." />
 
 
 
@@ -116,18 +117,27 @@ add to a slide." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Element</h1>
+    <h1>Slide list</h1>
     
-    <div class="hidden name"><code>R2PptxElement-class.Rd</code></div>
+    <div class="hidden name"><code>R2PptxSlideList-class.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>An S4 An class to represent text, a flextable, an image, a ggplot2, etc we
-add to a slide.</p>
+    <p>`R2PptxSlideList` is an S4 class to contain groups of `R2PptxSlide` objects
+that are not part of a presentation. It is meant to be used to create lists
+of slides and then be able to add the list easily to a presentation.</p>
     </div>
 
 
 
+    <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
+
+    
+
+<dl>
+<dt><code>slides</code></dt><dd><p>list. A list of `R2PptxSlide` objects</p></dd>
+
+</dl>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

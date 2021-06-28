@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -118,9 +118,11 @@
 <p>We start out making a title slide with a title and subtitle. We give <code>elements</code> for the title and subtitle as arguments to the <code><a href="../reference/new_slide.html">new_slide()</a></code> function. And we give “Title Slide” as the layout name, per the information from above.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">title_slide</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_slide.html">new_slide</a></span><span class="op">(</span>
-  <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Title 1"</span>, value <span class="op">=</span> <span class="st">"The title"</span><span class="op">)</span>,
-  <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Subtitle 2"</span>, value <span class="op">=</span> <span class="st">"The subtitle"</span><span class="op">)</span>,
-  layout <span class="op">=</span> <span class="st">"Title Slide"</span>
+  layout <span class="op">=</span> <span class="st">"Title Slide"</span>,
+  elements <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+    <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Title 1"</span>, value <span class="op">=</span> <span class="st">"The title"</span><span class="op">)</span>,
+    <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Subtitle 2"</span>, value <span class="op">=</span> <span class="st">"The subtitle"</span><span class="op">)</span>  
+  <span class="op">)</span>
 <span class="op">)</span></code></pre></div>
 <p><code>elements</code> have two arguments. The <code>key</code> tells R where to place the element. Currently, this only supports a placeholder label. Placeholder labls are the name of placeholders, which are the objects in a powerpoint slide layout (as seen above). Future development may allow other location specifications, such as giving x and y positions.</p>
 <p>Now we add the title slide to our presentation.</p>
@@ -129,10 +131,14 @@
 <p>Easy!</p>
 <p>Let’s add another slide with a ggplot. This time, we’ll add the <code>elements</code> to the <code>slide</code> rather than initializing the <code>slide</code> with <code>elements</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plot_slide</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_slide.html">new_slide</a></span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"Title and Content"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="co"># create the slide object</span>
+<span class="va">plot_slide</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_slide.html">new_slide</a></span><span class="op">(</span>layout <span class="op">=</span> <span class="st">"Title and Content"</span><span class="op">)</span>
+<span class="co"># create an element for the title element</span>
 <span class="va">title_element</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Title 1"</span>, value <span class="op">=</span> <span class="st">"A plot"</span><span class="op">)</span>
+<span class="co"># create a ggplot</span>
 <span class="va">cars_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">mpg</span>, y <span class="op">=</span> <span class="va">cyl</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># create an element for the plot</span>
 <span class="va">plot_element</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_element.html">new_element</a></span><span class="op">(</span>key <span class="op">=</span> <span class="st">"Content Placeholder 2"</span>, value <span class="op">=</span> <span class="va">cars_plot</span><span class="op">)</span>
 
 <span class="va">plot_slide</span> <span class="op">&lt;-</span> <span class="va">plot_slide</span> <span class="op">+</span>

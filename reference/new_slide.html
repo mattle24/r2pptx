@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
       </span>
     </div>
 
@@ -124,19 +124,20 @@
     <p>Make a `R2PptxSlide` object representing a powerpoint slide.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_slide</span><span class='op'>(</span><span class='va'>...</span>, <span class='va'>layout</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>new_slide</span><span class='op'>(</span><span class='va'>layout</span>, elements <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>...</th>
-      <td><p>`R2PptxElements` to initialize the slide with</p></td>
-    </tr>
-    <tr>
       <th>layout</th>
       <td><p>character. Name of the powerpoint layout to use for this
 slide.</p></td>
+    </tr>
+    <tr>
+      <th>elements</th>
+      <td><p>list. List of `R2PptxElements` to initialize the slide with.
+Defaults to empty list.</p></td>
     </tr>
     </table>
 
