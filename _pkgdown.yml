@@ -1,0 +1,24 @@
+url: https://mattle24.github.io/r2pptx/
+
+template:
+  params:
+    bootswatch: yeti
+
+reference:
+- title: Build presentation
+  contents:
+  - new_presentation
+  - new_slide
+  - new_element
+
+- title: Utility functions
+  contents:
+  - get_layout_properties
+  - get_layouts
+  - plot_layout
+
+- title: Classes
+  contents:
+  - R2PptxPresentation-class
+  - R2PptxElement-class
+  - R2PptxSlide-class

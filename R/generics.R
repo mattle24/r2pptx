@@ -1,6 +1,10 @@
 #' @import methods
 NULL
 
+
+# super class -----------------------------------------------------------
+setClass("R2Pptx")
+
 # write -------------------------------------------------------------------
 
 setGeneric("write_pptx", function(x, path, ...) standardGeneric("write_pptx"))

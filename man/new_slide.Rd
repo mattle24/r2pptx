@@ -4,13 +4,14 @@
 \alias{new_slide}
 \title{New slide}
 \usage{
-new_slide(..., layout)
+new_slide(layout, elements = list())
 }
 \arguments{
-\item{...}{`R2PptxElements` to initialize the slide with}
-
 \item{layout}{character. Name of the powerpoint layout to use for this
 slide.}
+
+\item{elements}{list. List of `R2PptxElements` to initialize the slide with.
+Defaults to empty list.}
 }
 \description{
 Make a `R2PptxSlide` object representing a powerpoint slide.

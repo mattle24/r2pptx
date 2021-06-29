@@ -8,7 +8,7 @@ NULL
 
 setMethod(
   "+",
-  signature = signature(e1 = "ANY", e2 = "R2PptxSlide"),
+  signature = signature(e1 = "R2Pptx", e2 = "R2Pptx"),
   function(e1, e2) {
     append_slide(e1, e2)
   }

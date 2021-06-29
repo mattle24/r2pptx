@@ -2,6 +2,7 @@
 #' @include location.R
 NULL
 
+
 #' Element
 #'
 #' An S4 An class to represent text, a flextable, an image, a ggplot2, etc we
@@ -14,6 +15,7 @@ setClass(
     value = "ANY"
   )
 )
+
 
 #' New Element
 #'

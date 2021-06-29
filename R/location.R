@@ -18,5 +18,5 @@ setGeneric("asR2PptxLocation", function(x) standardGeneric("asR2PptxLocation"))
 setMethod(
   "asR2PptxLocation",
   "character",
-  \(x) R2PptxLocation(x)
+  function(x) R2PptxLocation(x)
 )
