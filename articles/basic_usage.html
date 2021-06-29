@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Basic Usage • r2pptx</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/sandstone/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9003</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9004</span>
       </span>
     </div>
 
@@ -59,7 +59,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/mattle24/r2pptx/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -69,13 +76,13 @@
 
       
 
-      </header><script src="basic_usage_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="basic_usage_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Basic Usage</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/mattle24/r2pptx/blob/master/vignettes/basic_usage.Rmd"><code>vignettes/basic_usage.Rmd</code></a></small>
       <div class="hidden name"><code>basic_usage.Rmd</code></div>
 
     </div>
@@ -84,7 +91,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">r2pptx</span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mattle24.github.io/r2pptx">r2pptx</a></span><span class="op">)</span></code></pre></div>
 <p>Let’s go through how to make a basic presentation using <code>rpptx</code>!</p>
 <p><code>rpptx</code> leverages the power of the <code>officer</code> package and the ease of use of powerpoint templates to form a simple and easy to use API to create powerpoint slide decks straight from R. Therefore, the first thing we need to do is to choose a powerpoint template. This is a normal <code>.pptx</code> file that has the template we want in <code>Slide Master</code>. By default, <code>rpptx</code> uses the default template in <code>officer</code>, which seems like a slight variation on the default Microsoft powerpoint template.</p>
 <p>Let’s start by creating a <code>presentation</code>.</p>
@@ -93,7 +100,7 @@
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span>
 <span class="co">#&gt; Presentation with 0 slides.</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/library/officer/template/template.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/Users/runner/work/_temp/Library/officer/template/template.pptx"</span></code></pre></div>
 <p>We can see this is an empty presentation with the template path set to the default <code>officer</code> template. What’s in this template? We can check easily using some utility functions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_layouts.html">get_layouts</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span>
