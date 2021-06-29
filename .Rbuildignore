@@ -3,3 +3,6 @@
 ^README\.Rmd$
 ^doc$
 ^Meta$
+^docs$
+^_pkgdown.yml$
+^.github$

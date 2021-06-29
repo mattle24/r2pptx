@@ -19,6 +19,24 @@ setClass(
   )
 )
 
+# length
+
+setMethod("length", "R2PptxSlide", function(x) length(x@elements))
+
+# show method
+setMethod(
+  "show",
+  "R2PptxSlide",
+  function(object) {
+    element_types <- purrr::map_chr(object@elements, ~ class(.@value)[1])
+    cat(glue::glue(
+      "Slide with {x} elements:\n",
+      paste("- ", element_types, collapse = "\n"),
+      x = length(object)
+    ))
+  }
+)
+
 #' New slide
 #'
 #' Make a `R2PptxSlide` object representing a powerpoint slide.

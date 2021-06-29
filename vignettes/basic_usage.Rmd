@@ -2,7 +2,7 @@
 title: "Basic Usage"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{basic_usage}
+  %\VignetteIndexEntry{Basic Usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -69,6 +69,7 @@ title_slide <- new_slide(
     new_element(key = "Subtitle 2", value = "The subtitle")  
   )
 )
+print(title_slide)
 ```
 
 `elements` have two arguments. The `key` tells R where to place the element. Currently, 
@@ -79,6 +80,7 @@ Now we add the title slide to our presentation.
 
 ```{r}
 presentation <- presentation + title_slide
+print(presentation)
 ```
 
 Easy!
@@ -89,8 +91,11 @@ rather than initializing the `slide` with `elements`.
 ```{r}
 # create the slide object
 plot_slide <- new_slide(layout = "Title and Content")
+print(plot_slide)
+
 # create an element for the title element
 title_element <- new_element(key = "Title 1", value = "A plot")
+
 # create a ggplot
 cars_plot <- ggplot(mtcars, aes(x = mpg, y = cyl)) + 
   geom_point()
@@ -100,9 +105,11 @@ plot_element <- new_element(key = "Content Placeholder 2", value = cars_plot)
 plot_slide <- plot_slide +
   title_element +
   plot_element
+print(plot_slide)
 
 presentation <- presentation +
   plot_slide
+print(presentation)
 ```
 
 And then we can write the `presentation` to powerpoint.

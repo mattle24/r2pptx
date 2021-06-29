@@ -1,0 +1,3 @@
+rmarkdown::html_vignette:
+  toc: true
+  toc_depth: 2
