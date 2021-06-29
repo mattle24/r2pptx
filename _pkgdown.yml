@@ -2,8 +2,18 @@ url: https://mattle24.github.io/r2pptx/
 
 template:
   params:
-    bootswatch: yeti
+    bootswatch: sandstone
 
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - tutorials
+    - news
+    right: github
 reference:
 - title: Build presentation
   contents:

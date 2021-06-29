@@ -11,7 +11,7 @@ Authors@R:
 Description: A R package to provide a friendly object oriented API for creating
     Powerpoint slide decks in R.
 URL: https://mattle24.github.io/r2pptx, https://github.com/mattle24/r2pptx
-License: BSD 3
+License: BSD-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
