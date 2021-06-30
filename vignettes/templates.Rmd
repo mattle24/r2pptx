@@ -1,0 +1,88 @@
+---
+title: "Templates"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Templates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(r2pptx)
+```
+
+Powerpoint templates and layouts are the driving force of `r2pptx`. [David Gohel's officeverse documentation](https://ardata-fr.github.io/officeverse/about-office-documents.html#powerpoint-layouts-and-masters) is excellent, and covers the bases on creating new templates. I'll try to fill in
+some of the gaps that someone newer to using `officer` or `r2pptx` might be wondering about.
+
+In the way we use them for these packages, powerpoint templates are just normal `.pptx` files. Explicitly, they are not `.potx` files -- `officer` cannot read these files. Powerpoint templates have two sections relevant here -- the normal slides, and the slide master. 
+
+The normal slides are what you would see if you presented the slide deck. If you have existing slides in the `.pptx` file you use as your template for `r2pptx`, your output slide deck
+will start with those pre-existing slides. 
+
+The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on -- for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the Powerpoint UI that we can then fill later using `officer` or `r2pptx`. Otherwise, we would need to define the style, size, and location of each element we created using R -- potentially more exact and reproducible, but much harder.
+
+We set the template path for the slide decks we create in `r2pptx` via the `presentation` 
+object (the variable doesn't have to be named `presentation`). By default this is the
+default template included in the `officer` package. We can get the template path
+using the `template_path()` method.
+
+```{r}
+presentation <- new_presentation()
+print(template_path(presentation))
+```
+
+We can also set a new path using the `template_path()<-` method. When a new template path is set, R will check to make sure a file exists at that path. If you have any `.pptx` file in your computer, you can try subbing in that file path as the value of `new_template_path`.
+
+```{r, results="hide"}
+# for the example, make a copy the default template and pretend it's a totally
+# different template (since that's all we have on the testing server)
+new_template_path <- tempfile(pattern = "new_template", fileext = ".pptx")
+file.copy(
+  system.file(package = "officer", "template/template.pptx"),
+  new_template_path
+)
+```
+
+
+```{r}
+template_path(presentation) <- new_template_path
+print(template_path(presentation))
+```
+
+You can also set the template path when you create the presentation -- this is probably the easier way to set your template path.
+
+```{r}
+presentation <- new_presentation(new_template_path)
+print(template_path(presentation))
+```
+
+And the code will fail if the template path doesn't point to an existing file.
+
+```{r, error=TRUE}
+new_presentation("some_fake_template_path.pptx")
+```
+
+```{r, error=TRUE}
+template_path(presentation) <- "some_fake_template_path.pptx"
+```
+
+Finally, if you find yourself using the same template path over and over, you can change the default 
+the `r2pptx` default template path using `options()`.
+
+```{r}
+options("default_pptx_template" = new_template_path)
+presentation <- new_presentation()
+print(template_path(presentation))
+```
+
+```{r, include=FALSE}
+# remove the copied template
+unlink(new_template_path)
+```

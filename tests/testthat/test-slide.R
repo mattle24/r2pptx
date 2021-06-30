@@ -63,9 +63,13 @@ describe("new_slide", {
     expect_equal(x@elements, list(e))
   })
   it("fails when input elements is other than expected", {
-    expect_error(new_slide("test", "lol"))
+    expect_error(new_slide("test", "lol"),
+                 regexp = "should be or extend class \"list\"")
   })
   it("fails when layout is missing", {
-    expect_error(new_slide())
+    expect_error(
+      new_slide(),
+      regexp = "`layout` was missing. See `officer::plot_layout_properties\\(\\)` for key options"
+    )
   })
 })
