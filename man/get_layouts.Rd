@@ -8,8 +8,6 @@ get_layouts(x)
 }
 \arguments{
 \item{x}{R2PpptxPresentation object}
-
-\item{layout}{character. Name of the layout to see properties for.}
 }
 \description{
 A thin wrapper around `officer::layout_summary()` to get layouts for

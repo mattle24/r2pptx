@@ -6,15 +6,12 @@
 \usage{
 new_element(key, value)
 }
+\arguments{
+\item{key}{character. Name of the placeholder label for this element.}
+
+\item{value}{object. Object to put into a powerpoint slide, eg text or a plot.}
+}
 \description{
 Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
 ggplot2, etc to add to a slide.
 }
-\section{Slots}{
-
-\describe{
-\item{\code{key}}{character. Name of the placeholder label for this element.}
-
-\item{\code{value}}{object. Object to put into a powerpoint slide, eg text or a plot.}
-}}
-

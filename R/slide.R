@@ -21,6 +21,8 @@ setClass(
 
 # length
 
+#' get slide length (elements)
+#' @rdname length
 setMethod("length", "R2PptxSlide", function(x) length(x@elements))
 
 # show method
@@ -72,6 +74,10 @@ setMethod(
   }
 )
 
+#' Add element to slide
+#'
+#' Add an `R2PptxElement` object to an `R2PptxSlide` object.
+#' @export
 setMethod(
   "+",
   signature = signature(e1 = "R2PptxSlide", e2 = "R2PptxElement"),
@@ -157,3 +163,14 @@ setMethod(
   }
 )
 
+
+#' Add slide to slidelist
+#'
+#' @export
+setMethod(
+  "+",
+  signature = signature(e1 = "R2PptxSlide", e2 = "R2PptxSlideList"),
+  function(e1, e2) {
+    append_slide(e1, e2)
+  }
+)

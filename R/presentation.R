@@ -11,6 +11,7 @@ NULL
 #' @export
 setClass(
   "R2PptxPresentation",
+  contains = "R2Pptx",
   slots = c(
     slides = "list",
     template_path = "character"
@@ -80,22 +81,13 @@ setMethod(
 )
 
 
-setMethod(
-  "+",
-  signature = signature(e1 = "R2PptxPresentation", e2 = "R2PptxSlide"),
-  function(e1, e2) {
-    append_slide(e1, e2)
-  }
-)
-
-
 # write pptx --------------------------------------------------------------
 
-#' @export
+#' @describeIn write_pptx Write a presentation to a `.pptx` file
 setMethod(
   "write_pptx",
   "R2PptxPresentation",
-  function(x, path, ...) {
+  function(x, path) {
     pptx_obj <- officer::read_pptx(path = x@template_path)
 
     for (slide in x@slides) {
@@ -120,20 +112,31 @@ setMethod(
 
 # length ------------------------------------------------------------------
 
+#' get presentation length (slides)
+#' @rdname length
 setMethod("length", "R2PptxPresentation", function(x) length(x@slides))
 
 # template path -----------------------------------------------------------
 
+#' Get template path
+#' @param x object to get the template path for.
 #' @export
 setGeneric("template_path", function(x) standardGeneric("template_path"))
 
+#' @describeIn template_path Get the template path of an `R2PptxPresentation`
+#'   object.
 setMethod("template_path", "R2PptxPresentation", function(x) {
   x@template_path
 })
 
+#' Set template path
+#' @param x object to set the template path of.
+#' @param value character. File path of the new template
+#' @export
 setGeneric("template_path<-", function(x, value) standardGeneric("template_path<-"))
 
-#' @export
+#' @describeIn template_path-set Set the template path of an `R2PptxPresentation`
+#'   object.
 setMethod("template_path<-", "R2PptxPresentation", function(x, value) {
   x@template_path <- value
   validObject(x)

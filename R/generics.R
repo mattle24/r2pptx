@@ -3,11 +3,18 @@ NULL
 
 
 # super class -----------------------------------------------------------
+
 setClass("R2Pptx")
 
 # write -------------------------------------------------------------------
 
-setGeneric("write_pptx", function(x, path, ...) standardGeneric("write_pptx"))
+#' Write pptx
+#'
+#' Write an object to a `.pptx` file.
+#' @param x object
+#' @param path character. File path to write to.
+#' @export
+setGeneric("write_pptx", function(x, path) standardGeneric("write_pptx"))
 
 # append slide ---------------------------------------------------------------
 

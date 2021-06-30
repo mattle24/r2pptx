@@ -18,6 +18,7 @@ RoxygenNote: 7.1.1
 Depends:
     R (>= 4.0.0)
 Imports:
+    glue,
     methods,
     officer,
     purrr,

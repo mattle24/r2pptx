@@ -16,7 +16,6 @@ plot_layout <- function(x, layout) {
 #' A thin wrapper around `officer::layout_summary()` to get layouts for
 #' `R2PpptxPresentation` objects.
 #' @param x R2PpptxPresentation object
-#' @param layout character. Name of the layout to see properties for.
 #' @export
 get_layouts <- function(x) {
   pptx_obj <- officer::read_pptx(template_path(x))

@@ -21,8 +21,8 @@ setClass(
 #'
 #' Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
 #' ggplot2, etc to add to a slide.
-#' @slot key character. Name of the placeholder label for this element.
-#' @slot value object. Object to put into a powerpoint slide, eg text or a plot.
+#' @param key character. Name of the placeholder label for this element.
+#' @param value object. Object to put into a powerpoint slide, eg text or a plot.
 #' @export
 new_element <- function(key, value) {
   if (missing(key)) {
