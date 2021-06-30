@@ -6,6 +6,12 @@
 \usage{
 \S4method{+}{R2Pptx,R2PptxSlide}(e1, e2)
 }
+\arguments{
+\item{e1}{An object that a slide can be added to, such as an
+`R2PptxPresentation`, `R2PptxSlide`, or `R2PptxSlideList`.}
+
+\item{e2}{`R2PptxSlide` object}
+}
 \description{
 Add an `R2PptxSlide` object to something else compatible.
 }

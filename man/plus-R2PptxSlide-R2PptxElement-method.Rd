@@ -6,6 +6,11 @@
 \usage{
 \S4method{+}{R2PptxSlide,R2PptxElement}(e1, e2)
 }
+\arguments{
+\item{e1}{`R2PptxSlide` object}
+
+\item{e2}{`R2PptxElement` object}
+}
 \description{
 Add an `R2PptxElement` object to an `R2PptxSlide` object.
 }

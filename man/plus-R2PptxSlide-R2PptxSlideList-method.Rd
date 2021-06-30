@@ -6,6 +6,11 @@
 \usage{
 \S4method{+}{R2PptxSlide,R2PptxSlideList}(e1, e2)
 }
+\arguments{
+\item{e1}{`R2PptxSlide` object}
+
+\item{e2}{`R2PptxSlideList` object}
+}
 \description{
 Add slide to slidelist
 }

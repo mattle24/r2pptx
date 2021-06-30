@@ -60,6 +60,11 @@ new_slide <- function(layout, elements = list()) {
 
 # length ------------------------------------------------------------------
 
+#' Get slide length
+#'
+#' Returns the number of elements in a slide
+#' @rdname length
+#' @param x `R2PptxSlide` object
 setMethod("length", "R2PptxSlide", function(x) length(x@elements))
 
 
@@ -77,6 +82,8 @@ setMethod(
 #' Add element to slide
 #'
 #' Add an `R2PptxElement` object to an `R2PptxSlide` object.
+#' @param e1 `R2PptxSlide` object
+#' @param e2 `R2PptxElement` object
 #' @export
 setMethod(
   "+",
@@ -166,6 +173,8 @@ setMethod(
 
 #' Add slide to slidelist
 #'
+#' @param e1 `R2PptxSlide` object
+#' @param e2 `R2PptxSlideList` object
 #' @export
 setMethod(
   "+",

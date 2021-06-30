@@ -7,10 +7,13 @@
 \usage{
 \S4method{length}{R2PptxSlide}(x)
 
+\S4method{length}{R2PptxSlide}(x)
+
 \S4method{length}{R2PptxPresentation}(x)
 }
+\arguments{
+\item{x}{`R2PptxSlide` object}
+}
 \description{
-get slide length (elements)
-
-get presentation length (slides)
+Returns the number of elements in a slide
 }
