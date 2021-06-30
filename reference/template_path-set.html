@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New Element — new_element • r2pptx</title>
+<title>Set template path — template_path&lt;- • r2pptx</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="New Element — new_element" />
-<meta property="og:description" content="Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
-ggplot2, etc to add to a slide." />
+<meta property="og:title" content="Set template path — template_path&lt;-" />
+<meta property="og:description" content="Set template path" />
 
 
 
@@ -124,31 +123,40 @@ ggplot2, etc to add to a slide." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>New Element</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mattle24/r2pptx/blob/master/R/element.R'><code>R/element.R</code></a></small>
-    <div class="hidden name"><code>new_element.Rd</code></div>
+    <h1>Set template path</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mattle24/r2pptx/blob/master/R/presentation.R'><code>R/presentation.R</code></a></small>
+    <div class="hidden name"><code>template_path-set.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
-ggplot2, etc to add to a slide.</p>
+    <p>Set template path</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_element</span><span class='op'>(</span><span class='va'>key</span>, <span class='va'>value</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'><a href='template_path.html'>template_path</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
+
+<span class='co'># S4 method for R2PptxPresentation</span>
+<span class='fu'><a href='template_path.html'>template_path</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>key</th>
-      <td><p>character. Name of the placeholder label for this element.</p></td>
+      <th>x</th>
+      <td><p>object to set the template path of.</p></td>
     </tr>
     <tr>
       <th>value</th>
-      <td><p>object. Object to put into a powerpoint slide, eg text or a plot.</p></td>
+      <td><p>character. File path of the new template</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>template_path&lt;-,R2PptxPresentation-method</code>: Set the template path of an `R2PptxPresentation`
+object.</p></li>
+</ul>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

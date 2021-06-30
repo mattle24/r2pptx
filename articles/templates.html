@@ -98,10 +98,10 @@
 <p>In the way we use them for these packages, powerpoint templates are just normal <code>.pptx</code> files. Explicitly, they are not <code>.potx</code> files – <code>officer</code> cannot read these files. Powerpoint templates have two sections relevant here – the normal slides, and the slide master.</p>
 <p>The normal slides are what you would see if you presented the slide deck. If you have existing slides in the <code>.pptx</code> file you use as your template for <code>r2pptx</code>, your output slide deck will start with those pre-existing slides.</p>
 <p>The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on – for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the Powerpoint UI that we can then fill later using <code>officer</code> or <code>r2pptx</code>. Otherwise, we would need to define the style, size, and location of each element we created using R – potentially more exact and reproducible, but much harder.</p>
-<p>We set the template path for the slide decks we create in <code>r2pptx</code> via the <code>presentation</code> object (the variable doesn’t have to be named <code>presentation</code>). By default this is the default template included in the <code>officer</code> package. We can get the template path using the <code>template_path()</code> method.</p>
+<p>We set the template path for the slide decks we create in <code>r2pptx</code> via the <code>presentation</code> object (the variable doesn’t have to be named <code>presentation</code>). By default this is the default template included in the <code>officer</code> package. We can get the template path using the <code><a href="../reference/template_path.html">template_path()</a></code> method.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "/Users/runner/work/_temp/Library/officer/template/template.pptx"</span></code></pre></div>
 <p>We can also set a new path using the <code>template_path()&lt;-</code> method. When a new template path is set, R will check to make sure a file exists at that path. If you have any <code>.pptx</code> file in your computer, you can try subbing in that file path as the value of <code>new_template_path</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -113,27 +113,27 @@
   <span class="va">new_template_path</span>
 <span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_template_path</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpySI3ns/new_template8f47059468f.pptx"</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_template_path</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPwBYeQ/new_template782366bdd33.pptx"</span></code></pre></div>
 <p>You can also set the template path when you create the presentation – this is probably the easier way to set your template path.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="va">new_template_path</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpySI3ns/new_template8f47059468f.pptx"</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPwBYeQ/new_template782366bdd33.pptx"</span></code></pre></div>
 <p>And the code will fail if the template path doesn’t point to an existing file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="st">"some_fake_template_path.pptx"</span><span class="op">)</span>
 <span class="co">#&gt; Error in validObject(.Object): invalid class "R2PptxPresentation" object: Template path must be valid file. File `some_fake_template_path.pptx` not found.</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"some_fake_template_path.pptx"</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"some_fake_template_path.pptx"</span>
 <span class="co">#&gt; Error in validObject(x): invalid class "R2PptxPresentation" object: Template path must be valid file. File `some_fake_template_path.pptx` not found.</span></code></pre></div>
 <p>Finally, if you find yourself using the same template path over and over, you can change the default the <code>r2pptx</code> default template path using <code><a href="https://rdrr.io/r/base/options.html">options()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"default_pptx_template"</span> <span class="op">=</span> <span class="va">new_template_path</span><span class="op">)</span>
 <span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpySI3ns/new_template8f47059468f.pptx"</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpPwBYeQ/new_template782366bdd33.pptx"</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

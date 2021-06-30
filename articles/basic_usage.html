@@ -102,7 +102,7 @@
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span>
 <span class="co">#&gt; Presentation with 0 slides.</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu">template_path</span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "/Users/runner/work/_temp/Library/officer/template/template.pptx"</span></code></pre></div>
 <p>We can see this is an empty presentation with the template path set to the default <code>officer</code> template. What’s in this template? We can check easily using some utility functions.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -177,7 +177,7 @@
 <p>And then we can write the <code>presentation</code> to powerpoint.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ppt_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".pptx"</span><span class="op">)</span>
-<span class="fu">write_pptx</span><span class="op">(</span><span class="va">presentation</span>, <span class="va">ppt_path</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_pptx.html">write_pptx</a></span><span class="op">(</span><span class="va">presentation</span>, <span class="va">ppt_path</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"open"</span>, <span class="va">ppt_path</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>And you have a slide deck! Congrats!</p>
   </div>

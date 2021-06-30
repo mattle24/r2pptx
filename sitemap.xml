@@ -25,6 +25,9 @@
     <loc>https://mattle24.github.io/r2pptx//reference/get_layouts.html</loc>
   </url>
   <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/length.html</loc>
+  </url>
+  <url>
     <loc>https://mattle24.github.io/r2pptx//reference/new_element.html</loc>
   </url>
   <url>
@@ -35,6 +38,24 @@
   </url>
   <url>
     <loc>https://mattle24.github.io/r2pptx//reference/plot_layout.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2Pptx-R2PptxSlide-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxSlide-R2PptxElement-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxSlide-R2PptxSlideList-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/template_path-set.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/template_path.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx//reference/write_pptx.html</loc>
   </url>
   <url>
     <loc>https://mattle24.github.io/r2pptx//articles/basic_usage.html</loc>

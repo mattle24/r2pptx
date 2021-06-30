@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>New Element — new_element • r2pptx</title>
+<title>Write pptx — write_pptx • r2pptx</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,8 @@
 
 
 
-<meta property="og:title" content="New Element — new_element" />
-<meta property="og:description" content="Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
-ggplot2, etc to add to a slide." />
+<meta property="og:title" content="Write pptx — write_pptx" />
+<meta property="og:description" content="Write an object to a `.pptx` file." />
 
 
 
@@ -124,31 +123,39 @@ ggplot2, etc to add to a slide." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>New Element</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mattle24/r2pptx/blob/master/R/element.R'><code>R/element.R</code></a></small>
-    <div class="hidden name"><code>new_element.Rd</code></div>
+    <h1>Write pptx</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mattle24/r2pptx/blob/master/R/generics.R'><code>R/generics.R</code></a>, <a href='https://github.com/mattle24/r2pptx/blob/master/R/presentation.R'><code>R/presentation.R</code></a></small>
+    <div class="hidden name"><code>write_pptx.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
-ggplot2, etc to add to a slide.</p>
+    <p>Write an object to a `.pptx` file.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>new_element</span><span class='op'>(</span><span class='va'>key</span>, <span class='va'>value</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>write_pptx</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>path</span><span class='op'>)</span>
+
+<span class='co'># S4 method for R2PptxPresentation</span>
+<span class='fu'>write_pptx</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>path</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>key</th>
-      <td><p>character. Name of the placeholder label for this element.</p></td>
+      <th>x</th>
+      <td><p>object</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>object. Object to put into a powerpoint slide, eg text or a plot.</p></td>
+      <th>path</th>
+      <td><p>character. File path to write to.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="methods-by-class-"><a class="anchor" href="#methods-by-class-"></a>Methods (by class)</h2>
+
+    
+<ul>
+<li><p><code>R2PptxPresentation</code>: Write a presentation to a `.pptx` file</p></li>
+</ul>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
