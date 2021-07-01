@@ -1,10 +1,12 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# r2pptx
+# r2pptx <img src="man/figures/logo.png" align="right" width="100" />
 
 <!-- badges: start -->
 <!-- badges: end -->
+
+# Overview
 
 `r2pptx` leverages the power of the `officer` package and the ease of
 use of powerpoint templates to form a simple and easy to use API to
