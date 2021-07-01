@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9005</span>
       </span>
     </div>
 
@@ -115,25 +115,25 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_template_path</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplvEF0j/new_template7df790a6c4f.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpz2RrQC/new_template1487a6eca9b.pptx"</span></code></pre></div>
 <p>You can also set the template path when you create the presentation – this is probably the easier way to set your template path.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="va">new_template_path</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplvEF0j/new_template7df790a6c4f.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpz2RrQC/new_template1487a6eca9b.pptx"</span></code></pre></div>
 <p>And the code will fail if the template path doesn’t point to an existing file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="st">"some_fake_template_path.pptx"</span><span class="op">)</span>
-<span class="co">#&gt; Error in validObject(.Object): invalid class "R2PptxPresentation" object: Template path must be valid file. File `some_fake_template_path.pptx` not found.</span></code></pre></div>
+<span class="co">#&gt; Error in validObject(.Object): invalid class "R2PptxPresentation" object: Template path must be a valid file. File `some_fake_template_path.pptx` not found</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"some_fake_template_path.pptx"</span>
-<span class="co">#&gt; Error in validObject(x): invalid class "R2PptxPresentation" object: Template path must be valid file. File `some_fake_template_path.pptx` not found.</span></code></pre></div>
+<span class="co">#&gt; Error in validObject(x): invalid class "R2PptxPresentation" object: Template path must be a valid file. File `some_fake_template_path.pptx` not found</span></code></pre></div>
 <p>Finally, if you find yourself using the same template path over and over, you can change the default the <code>r2pptx</code> default template path using <code><a href="https://rdrr.io/r/base/options.html">options()</a></code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"default_pptx_template"</span> <span class="op">=</span> <span class="va">new_template_path</span><span class="op">)</span>
 <span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmplvEF0j/new_template7df790a6c4f.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//Rtmpz2RrQC/new_template1487a6eca9b.pptx"</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
