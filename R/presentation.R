@@ -19,15 +19,16 @@ setClass(
 )
 
 
+
 setValidity("R2PptxPresentation", function(object) {
-  if (!all(purrr::map_lgl(object@slides, ~ inherits(., "R2PptxSlide")))) {
+  if (!all(sapply(object@slides, function(x) inherits(x, "R2PptxSlide")))) {
     "Each slide must be a `R2PptxSlide` object"
   } else if (!endsWith(template_path(object), ".pptx")) {
     "Template must be a `.pptx` file"
   } else if (!file.exists(template_path(object))) {
     glue::glue(
-      "Template path must be valid file. File `{x}` not found.",
-      x = template_path(object)
+      "Template path must be a valid file. File `{f}` not found",
+      f = template_path(object)
     )
   } else {
     TRUE

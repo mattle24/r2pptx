@@ -1,7 +1,7 @@
 Package: r2pptx
 Type: Package
 Title: Object Oriented R -> Powerpoint
-Version: 0.0.0.9004
+Version: 0.0.0.9005
 Authors@R:
     c(person(given = "Matt",
              family = "Lehman",
@@ -16,16 +16,13 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Depends:
+    methods,
     R (>= 4.0.0)
 Imports:
     glue,
-    methods,
-    officer,
-    purrr,
-    rlang
+    officer
 Suggests:
     ggplot2,
-    flextable,
     testthat (>= 3.0.0),
     knitr,
     rmarkdown

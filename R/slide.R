@@ -30,11 +30,12 @@ setMethod(
   "show",
   "R2PptxSlide",
   function(object) {
-    element_types <- purrr::map_chr(object@elements, ~ class(.@value)[1])
+    element_types <- sapply(object@elements, function(x) class(x@value)[1])
     cat(glue::glue(
-      "Slide with {x} elements:\n",
+      "Slide with layout `{l}` and {n} elements:\n",
       paste("- ", element_types, collapse = "\n"),
-      x = length(object)
+      l = object@layout,
+      n = length(object)
     ))
   }
 )
@@ -49,7 +50,7 @@ setMethod(
 #' @export
 new_slide <- function(layout, elements = list()) {
   if (missing(layout)) {
-    rlang::abort("`layout` was missing. See `officer::plot_layout_properties()` for key options.")
+    stop("`layout` was missing. See `officer::plot_layout_properties()` for key options.")
   }
   if (is(elements, "R2PptxElement")) {
     elements <- list(elements)
@@ -115,7 +116,7 @@ setClass(
 
 
 setValidity("R2PptxSlideList", function(object) {
-  if (!all(purrr::map_lgl(object@slides, ~ inherits(., "R2PptxSlide")))) {
+  if (!all(sapply(object@slides, function(x) inherits(x, "R2PptxSlide")))) {
     "Each element in the list must be a `R2PptxSlide` object"
   } else {
     TRUE

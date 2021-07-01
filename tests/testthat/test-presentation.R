@@ -21,6 +21,7 @@ describe("validity works", {
   })
   it("fails when an invalid template path is given", {
     expect_error(new_presentation(template_path = "fake_slides.pptx"),
-                 regexp = "Template path must be valid file. File `fake_slides.pptx` not found.")
+                 regexp = "File `fake_slides.pptx` not found")
   })
+
 })

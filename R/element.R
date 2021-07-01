@@ -26,7 +26,7 @@ setClass(
 #' @export
 new_element <- function(key, value) {
   if (missing(key)) {
-    rlang::abort("`key` was missing. See `officer::layout_summary()` for layout options.")
+    stop("`key` was missing. See `officer::layout_summary()` for layout options.")
   }
 
   new("R2PptxElement", key = asR2PptxLocation(key), value = value)

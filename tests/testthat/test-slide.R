@@ -15,6 +15,19 @@ describe("R2PptxSlideList", {
   })
 })
 
+
+describe("show R2PptxSlide", {
+  it("prints as expected", {
+    slide <- new_slide(layout = "test", elements = list(new_element("x", "x")))
+    msg <- capture.output(print(slide))
+    expect_equal(
+      msg,
+      c("Slide with layout `test` and 1 elements:", "-  character")
+    )
+  })
+})
+
+
 describe("asSlideList", {
   it("works when input is a list of slides", {
     slide <- new_slide(layout = "test")
