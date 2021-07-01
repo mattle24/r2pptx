@@ -3,10 +3,10 @@
 on:
   push:
     branches:
-      - cmd-check
+      - main
   pull_request:
     branches:
-      - cmd-check
+      - main
 
 name: R-CMD-check
 
