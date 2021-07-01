@@ -4,6 +4,7 @@
 # r2pptx <img src="man/figures/logo.png" align="right" width="100" />
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/mattle24/r2pptx/actions/workflows/rcmd-check.yml/badge.svg?branch=main)](https://github.com/mattle24/r2pptx/actions/workflows/rcmd-check.yml)
 <!-- badges: end -->
 
 # Overview
