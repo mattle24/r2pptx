@@ -23,5 +23,21 @@ describe("validity works", {
     expect_error(new_presentation(template_path = "fake_slides.pptx"),
                  regexp = "File `fake_slides.pptx` not found")
   })
+})
 
+describe("add slide", {
+  it("can add a slide", {
+    p <- new_presentation()
+    p <- p + new_slide("test")
+    expect_s4_class(p, "R2PptxPresentation")
+    expect_equal(length(p), 1)
+  })
+  it("can add a slideList", {
+    p <- new_presentation()
+    slide_list <- new_slide("test") + new_slide("test")
+    expect_s4_class(slide_list, "R2PptxSlideList")
+    p <- p + slide_list
+    expect_s4_class(p, "R2PptxPresentation")
+    expect_equal(length(p), 2)
+  })
 })

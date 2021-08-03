@@ -139,6 +139,15 @@ setMethod(
   }
 )
 
+setGeneric("get_slides", function(x) standardGeneric("get_slides"))
+#' method to get slides
+setMethod(
+  "get_slides",
+  "R2PptxSlideList",
+  function(x) x@slides
+)
+
+
 # method to be able to append slides to each other in a slide list
 # two slides
 setMethod(

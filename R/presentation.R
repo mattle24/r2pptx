@@ -82,6 +82,25 @@ setMethod(
 )
 
 
+#' Add R2Ppptx slidelist
+#'
+#' Add an `R2PptxSlideList` object to a presentation.
+#' @param e1 `R2PptxPresentation` object
+#' @param e2 `R2PptxSlideList` object
+#' @keywords internal
+setMethod(
+  "+",
+  signature = signature(e1 = "R2PptxPresentation", e2 = "R2PptxSlideList"),
+  function(e1, e2) {
+    for (slide in get_slides(e2)) {
+      e1 <- append_slide(e1, slide)
+    }
+    e1
+  }
+)
+
+
+
 # write pptx --------------------------------------------------------------
 
 #' @describeIn write_pptx Write a presentation to a `.pptx` file
