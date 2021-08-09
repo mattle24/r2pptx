@@ -140,7 +140,9 @@ setMethod(
 )
 
 setGeneric("get_slides", function(x) standardGeneric("get_slides"))
+
 #' method to get slides
+#' @param x R2PptxSlideList object
 setMethod(
   "get_slides",
   "R2PptxSlideList",
