@@ -103,6 +103,7 @@ setMethod(
 #' that are not part of a presentation. It is meant to be used to create lists
 #' of slides and then be able to add the list easily to a presentation.
 #' @slot slides list. A list of `R2PptxSlide` objects
+#' @export
 setClass(
   Class = "R2PptxSlideList",
   contains = "R2Pptx",
@@ -122,6 +123,21 @@ setValidity("R2PptxSlideList", function(object) {
     TRUE
   }
 })
+
+
+#' New slide list
+#'
+#' Make a `R2PptxSlideList` object representing a list of powerpoint slides
+#' @param slides list. List of `R2PptxSlide` objects to initialize the list with.
+#'   Defaults to empty list.
+#' @export
+new_slidelist <- function(slides = list()) {
+  if (is(slides, "R2PptxSlide")) {
+    slides <- list(slides)
+  }
+  new("R2PptxSlideList", slides = slides)
+}
+
 
 setGeneric("asSlideList", function(x) standardGeneric("asSlideList"))
 setMethod(
@@ -193,5 +209,21 @@ setMethod(
   signature = signature(e1 = "R2PptxSlide", e2 = "R2PptxSlideList"),
   function(e1, e2) {
     append_slide(e1, e2)
+  }
+)
+
+#' Add slidelist to slidelist
+#'
+#' @param e1 `R2PptxSlideList` object
+#' @param e2 `R2PptxSlideList` object
+#' @export
+setMethod(
+  "+",
+  signature = signature(e1 = "R2PptxSlideList", e2 = "R2PptxSlideList"),
+  function(e1, e2) {
+    for (slide in get_slides(e2)) {
+      e1 <- append_slide(e1, slide)
+    }
+    e1
   }
 )
