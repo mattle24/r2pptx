@@ -1,5 +1,6 @@
 expect_is_r2pptx_slide_list <- function(x) expect_true(is(x, "R2PptxSlideList"))
 
+
 describe("R2PptxSlideList", {
   it("can be initialized", {
     x <- new("R2PptxSlideList")
@@ -59,6 +60,12 @@ describe("append_slide", {
     x <- slide + slidelist
     expect_is_r2pptx_slide_list(x)
   })
+  it("works for a slidelist and a slidelist", {
+    slide <- new_slide(layout = "test")
+    slidelist <- asSlideList(slide)
+    x <- slidelist + slidelist
+    expect_is_r2pptx_slide_list(x)
+  })
 })
 
 
@@ -84,5 +91,25 @@ describe("new_slide", {
       new_slide(),
       regexp = "`layout` was missing. See `officer::plot_layout_properties\\(\\)` for key options"
     )
+  })
+})
+
+
+describe("new_slidelist", {
+  it("works with empty call", {
+    x <- new_slidelist()
+    expect_is_r2pptx_slide_list(x)
+  })
+  it("works with list of slides", {
+    slides_list <- list()
+    for (i in 1:2) {
+      slides_list[[i]] <- new_slide("test")
+    }
+    x <- new_slidelist(slides_list)
+    expect_is_r2pptx_slide_list(x)
+  })
+  it("works with a slide", {
+    x <- new_slidelist(new_slide("test"))
+    expect_is_r2pptx_slide_list(x)
   })
 })
