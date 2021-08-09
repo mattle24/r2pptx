@@ -1,6 +1,6 @@
-# r2pptx 0.0.0.9006 (beta)
+# r2pptx 0.0.0.9007 (beta)
 
-* `R2PptxSlideList` improvements (#)
+* `R2PptxSlideList` improvements (#3)
 
   * Added `+` method to add `R2PptxSlideList` objects to `R2PptxSlideList` objects
   
