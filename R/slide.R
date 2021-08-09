@@ -128,8 +128,6 @@ setValidity("R2PptxSlideList", function(object) {
 #' New slide list
 #'
 #' Make a `R2PptxSlideList` object representing a list of powerpoint slides
-#' @param layout character. Name of the powerpoint layout to use for this
-#'   slide.
 #' @param slides list. List of `R2PptxSlide` objects to initialize the list with.
 #'   Defaults to empty list.
 #' @export

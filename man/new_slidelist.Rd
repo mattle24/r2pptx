@@ -9,9 +9,6 @@ new_slidelist(slides = list())
 \arguments{
 \item{slides}{list. List of `R2PptxSlide` objects to initialize the list with.
 Defaults to empty list.}
-
-\item{layout}{character. Name of the powerpoint layout to use for this
-slide.}
 }
 \description{
 Make a `R2PptxSlideList` object representing a list of powerpoint slides
