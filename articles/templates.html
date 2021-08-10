@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
       </span>
     </div>
 
@@ -67,6 +67,9 @@
       <a href="../articles/templates.html">Templates</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -122,12 +125,12 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_template_path</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpszLAZn/new_templatec9436c2fa4e.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpuajHnr/new_template7254d9dd5bb.pptx"</span></code></pre></div>
 <p>You can also set the template path when you create the presentation – this is probably the easier way to set your template path.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="va">new_template_path</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpszLAZn/new_templatec9436c2fa4e.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpuajHnr/new_template7254d9dd5bb.pptx"</span></code></pre></div>
 <p>And the code will fail if the template path doesn’t point to an existing file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="st">"some_fake_template_path.pptx"</span><span class="op">)</span>
@@ -140,7 +143,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"default_pptx_template"</span> <span class="op">=</span> <span class="va">new_template_path</span><span class="op">)</span>
 <span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpszLAZn/new_templatec9436c2fa4e.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpuajHnr/new_template7254d9dd5bb.pptx"</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
