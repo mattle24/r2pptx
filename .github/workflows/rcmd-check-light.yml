@@ -7,10 +7,10 @@ on:
     branches:
       - main
 
-name: R-CMD-check-light
+name: R-CMD-check-pull-request
 
 jobs:
-  R-CMD-check-light:
+  R-CMD-check-pull-request:
     runs-on: ubuntu-18.04
 
     name: ubuntu-18.04 (release)
