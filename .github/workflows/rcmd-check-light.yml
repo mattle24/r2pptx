@@ -1,35 +1,22 @@
 # from https://github.com/tidymodels/broom/blob/master/.github/workflows/R-CMD-check.yaml
-# run full suite of R CMD checks on different OS and versions of R to ensure no
-# issues
+# run R CMD checks only on released version of R / Linux to allow for quick testing
+# on pull requests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
-name: R-CMD-check
+name: R-CMD-check-light
 
 jobs:
-  R-CMD-check:
-    runs-on: ${{ matrix.config.os }}
+  R-CMD-check-light:
+    runs-on: ubuntu-18.04
 
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: macOS-latest,   r: 'release'}
-          - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-18.04,   r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest", http-user-agent: "R/4.0.0 (ubuntu-18.04) R (4.0.0 x86_64-pc-linux-gnu x86_64 linux-gnu) on GitHub Actions" }
-          - {os: ubuntu-18.04,   r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
-          - {os: ubuntu-18.04,   r: '3.6',     rspm: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"}
+    name: ubuntu-18.04 (release)
 
     env:
-      RSPM: ${{ matrix.config.rspm }}
+      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/bionic/latest"
 
     steps:
       - uses: actions/checkout@v2
@@ -37,8 +24,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
         id: install-r
         with:
-          r-version: ${{ matrix.config.r }}
-          http-user-agent: ${{ matrix.config.http-user-agent }}
+          r-version: 'release'
 
       - uses: r-lib/actions/setup-pandoc@v1
 
@@ -56,15 +42,10 @@ jobs:
           restore-keys: ${{ runner.os }}-${{ steps.install-r.outputs.installed-r-version }}-1-
 
       - name: Install system dependencies
-        if: runner.os == 'Linux'
         run: |
           pak::local_system_requirements(execute = TRUE)
           pak::pkg_system_requirements("rcmdcheck", execute = TRUE)
         shell: Rscript {0}
-
-      - name: Install XQuartz on macOS
-        if: runner.os == 'macOS'
-        run: brew install xquartz
 
       - name: Install dependencies
         run: |
