@@ -37,8 +37,9 @@ If you would like to contribute code, correct a type, or add
 documentation, please [open a pull
 request](https://github.com/mattle24/r2pptx/pulls).
 
-We have a \[Contributor Code of Conduct\]. By participating in broom you
-agree to abide by its terms.
+We have a [Contributor Code of
+Conduct](https://github.com/mattle24/r2pptx/blob/main/.github/CODE_OF_CONDUCT.md).
+By participating in `r2pptx` you agree to abide by its terms.
 
 # Thank you
 
