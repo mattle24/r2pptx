@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   basic_usage: basic_usage.html
   templates: templates.html
-last_built: 2021-09-01T14:33Z
+last_built: 2021-09-01T14:49Z
 urls:
   reference: https://mattle24.github.io/r2pptx//reference
   article: https://mattle24.github.io/r2pptx//articles
