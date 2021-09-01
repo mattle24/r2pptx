@@ -19,12 +19,12 @@ library(ggplot2)
 library(r2pptx)
 ```
 
-Let's go through how to make a basic presentation using `rpptx`!
+Let's go through how to make a basic presentation using `r2pptx`!
 
-`rpptx` leverages the power of the `officer` package and the ease of use of powerpoint
+`r2pptx` leverages the power of the `officer` package and the ease of use of powerpoint
 templates to form a simple and easy to use API to create powerpoint slide decks
 straight from R. Therefore, the first thing we need to do is to choose a powerpoint
-template. This is a normal `.pptx` file that has the template we want in `Slide Master`. By default, `rpptx` uses the default template in `officer`, which seems 
+template. This is a normal `.pptx` file that has the template we want in `Slide Master`. By default, `r2pptx` uses the default template in `officer`, which seems 
 like a slight variation on the default Microsoft powerpoint template.
 
 Let's start by creating a `presentation`.
