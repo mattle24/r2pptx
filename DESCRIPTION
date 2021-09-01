@@ -8,8 +8,8 @@ Authors@R:
              role = c("aut", "cre"),
              email = "mhlehman24@gmail.com")
     )
-Description: A R package to provide a friendly object oriented API for creating
-    Powerpoint slide decks in R.
+Description: Provides a friendly, object oriented API for creating Powerpoint
+    slide decks in R.
 URL: https://mattle24.github.io/r2pptx, https://github.com/mattle24/r2pptx
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8

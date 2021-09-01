@@ -4,7 +4,6 @@
 # r2pptx <img src="man/figures/logo.png" align="right" width="100" />
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/mattle24/r2pptx/actions/workflows/rcmd-check.yml/badge.svg?branch=main)](https://github.com/mattle24/r2pptx/actions/workflows/rcmd-check.yml)
 <!-- badges: end -->
 
 # Overview
@@ -13,16 +12,17 @@
 use of powerpoint templates to form a simple and easy to use API to
 create powerpoint slide decks straight from R.
 
-## Installation
-
-You can install the released version of r2pptx from Github:
-
-``` r
-devtools::install_github("mattle24/r2pptx")
-```
-
 [Documentation is available online](https://mattle24.github.io/r2pptx/)
 or through the vignettes.
+
+## Installation
+
+``` r
+install.packages("r2pptx")
+
+# to get the development version from GitHub:
+remotes::install_github("mattle24/r2pptx")
+```
 
 # Thank you
 
