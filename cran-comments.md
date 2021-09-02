@@ -4,7 +4,7 @@ This is the first submission of r2pptx to CRAN.
 
 ## Test environments
 
-* local OS X install, R 4.1.0
+* local OS X install, R 4.1.1
 * ubuntu 18.04 (on github actions), devel, release, oldrel
 * windows (on github actions), release
 * OS X (on github actions), release
