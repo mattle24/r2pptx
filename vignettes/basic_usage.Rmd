@@ -73,7 +73,7 @@ print(title_slide)
 ```
 
 `elements` have two arguments. The `key` tells R where to place the element. Currently, 
-this only supports a placeholder label. Placeholder labls are the name of placeholders, 
+this only supports a placeholder label. Placeholder lables are the name of placeholders, 
 which are the objects in a powerpoint slide layout (as seen above). Future development may allow other location specifications, such as giving x and y positions. 
 
 Now we add the title slide to our presentation.

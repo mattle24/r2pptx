@@ -49,4 +49,4 @@ Thank you to [David Gohel](https://github.com/davidgohel) for the
 
 Also thank you to Hadley Wickham and Jenny Bryan for an [introduction to
 S4 in Advanced R](https://adv-r.hadley.nz/s4.html) and [a guide to
-package developmemt](https://r-pkgs.org/index.html)!
+package development](https://r-pkgs.org/index.html)!

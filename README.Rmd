@@ -49,4 +49,4 @@ We have a [Contributor Code of Conduct](https://github.com/mattle24/r2pptx/blob/
 Thank you to [David Gohel](https://github.com/davidgohel) for the [`officeverse`](https://ardata-fr.github.io/officeverse/) packages! `r2pptx` is a wrapper
 around David's excellent work.
 
-Also thank you to Hadley Wickham and Jenny Bryan for an [introduction to S4 in Advanced R](https://adv-r.hadley.nz/s4.html) and [a guide to package developmemt](https://r-pkgs.org/index.html)!
+Also thank you to Hadley Wickham and Jenny Bryan for an [introduction to S4 in Advanced R](https://adv-r.hadley.nz/s4.html) and [a guide to package development](https://r-pkgs.org/index.html)!
