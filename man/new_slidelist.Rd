@@ -11,5 +11,5 @@ new_slidelist(slides = list())
 Defaults to empty list.}
 }
 \description{
-Make a `R2PptxSlideList` object representing a list of powerpoint slides
+Make a `R2PptxSlideList` object representing a list of PowerPoint slides
 }

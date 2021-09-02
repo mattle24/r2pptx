@@ -4,9 +4,9 @@ NULL
 
 #' Presentation
 #'
-#' An S4 class to represent a powerpoint presentation.
+#' An S4 class to represent a PowerPoint presentation.
 #' @slot slides list. List of `R2PptxSlide` objects.
-#' @slot template_path character. File path to the Powerpoint template used
+#' @slot template_path character. File path to the PowerPoint template used
 #' for this presentation.
 #' @export
 setClass(
@@ -38,8 +38,8 @@ setValidity("R2PptxPresentation", function(object) {
 
 #' New Presentation
 #'
-#' Make a new `R2PptxPresentation`. Presentations represent powerpoint decks.
-#' @param template_path character. Path of the file that has the Powerpoint
+#' Make a new `R2PptxPresentation`. Presentations represent PowerPoint decks.
+#' @param template_path character. Path of the file that has the PowerPoint
 #'   template to use. Defaults to path set in `options("default_pptx_template")`
 #' @param slides list. Optional. List of slides to initiate the presentation
 #'   with.

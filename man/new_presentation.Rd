@@ -10,12 +10,12 @@ new_presentation(
 )
 }
 \arguments{
-\item{template_path}{character. Path of the file that has the Powerpoint
+\item{template_path}{character. Path of the file that has the PowerPoint
 template to use. Defaults to path set in `options("default_pptx_template")`}
 
 \item{slides}{list. Optional. List of slides to initiate the presentation
 with.}
 }
 \description{
-Make a new `R2PptxPresentation`. Presentations represent powerpoint decks.
+Make a new `R2PptxPresentation`. Presentations represent PowerPoint decks.
 }

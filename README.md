@@ -9,7 +9,7 @@
 # Overview
 
 `r2pptx` leverages the power of the `officer` package and the ease of
-use of powerpoint templates, making it simple to create powerpoint slide
+use of PowerPoint templates, making it simple to create PowerPoint slide
 decks straight from R.
 
 [Documentation is available online](https://mattle24.github.io/r2pptx/)

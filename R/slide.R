@@ -5,8 +5,8 @@ NULL
 
 #' Slide
 #'
-#' An S4 class to represent a powerpoint slide
-#' @slot layout character. Name of the powerpoint layout to use for this
+#' An S4 class to represent a PowerPoint slide
+#' @slot layout character. Name of the PowerPoint layout to use for this
 #'   slide.
 #' @slot elements list. List of `R2PptxElement` objects.
 #' @export
@@ -42,8 +42,8 @@ setMethod(
 
 #' New slide
 #'
-#' Make a `R2PptxSlide` object representing a powerpoint slide.
-#' @param layout character. Name of the powerpoint layout to use for this
+#' Make a `R2PptxSlide` object representing a PowerPoint slide.
+#' @param layout character. Name of the PowerPoint layout to use for this
 #'   slide.
 #' @param elements list. List of `R2PptxElements` to initialize the slide with.
 #'   Defaults to empty list.
@@ -127,7 +127,7 @@ setValidity("R2PptxSlideList", function(object) {
 
 #' New slide list
 #'
-#' Make a `R2PptxSlideList` object representing a list of powerpoint slides
+#' Make a `R2PptxSlideList` object representing a list of PowerPoint slides
 #' @param slides list. List of `R2PptxSlide` objects to initialize the list with.
 #'   Defaults to empty list.
 #' @export
