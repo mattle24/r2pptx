@@ -17,5 +17,3 @@ This is the first submission of r2pptx to CRAN.
 # Reverse dependencies
 
 There are currently no downstream dependencies for this package.
-
-
