@@ -80,4 +80,4 @@ jobs:
 
       - name: Check .Rd
         if: always()
-        shell: Rscript check_rd.R
+        run: Rscript check_rd.R
