@@ -14,6 +14,9 @@
 \arguments{
 \item{x}{`R2PptxSlide` object}
 }
+\value{
+Integer, the number of slides in the presentation.
+}
 \description{
 Returns the number of elements in a slide
 }

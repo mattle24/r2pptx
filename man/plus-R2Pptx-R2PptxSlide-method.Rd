@@ -12,6 +12,11 @@
 
 \item{e2}{`R2PptxSlide` object}
 }
+\value{
+If \code{e1} is an object of class \code{R2PptxPresentation} then
+  returns an object of class \code{R2PptxPresentation}. Otherwise returns an
+  object of class \code{R2PptxSlideList}
+}
 \description{
 Add an `R2PptxSlide` object to something else compatible.
 }

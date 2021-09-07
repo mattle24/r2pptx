@@ -44,6 +44,7 @@ setValidity("R2PptxPresentation", function(object) {
 #' @param slides list. Optional. List of slides to initiate the presentation
 #'   with.
 #' @export
+#' @return An object of class \code{R2PptxPresentation}.
 new_presentation <- function(
   template_path = getOption("default_pptx_template"),
   slides = list()
@@ -104,6 +105,7 @@ setMethod(
 # write pptx --------------------------------------------------------------
 
 #' @describeIn write_pptx Write a presentation to a `.pptx` file
+#' @return An object of class \code{R2PptxPresentation}
 setMethod(
   "write_pptx",
   "R2PptxPresentation",
@@ -134,6 +136,7 @@ setMethod(
 
 #' get presentation length (slides)
 #' @rdname length
+#' @return Integer, the number of slides in the presentation.
 setMethod("length", "R2PptxPresentation", function(x) length(x@slides))
 
 # template path -----------------------------------------------------------

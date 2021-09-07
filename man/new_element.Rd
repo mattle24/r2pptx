@@ -11,6 +11,9 @@ new_element(key, value)
 
 \item{value}{object. Object to put into a PowerPoint slide, eg text or a plot.}
 }
+\value{
+An object of class \code{R2PptxElement}
+}
 \description{
 Make a new `R2PptxElement`. Element represent text, a flextable, an image, a
 ggplot2, etc to add to a slide.

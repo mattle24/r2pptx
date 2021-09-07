@@ -16,6 +16,9 @@ template to use. Defaults to path set in `options("default_pptx_template")`}
 \item{slides}{list. Optional. List of slides to initiate the presentation
 with.}
 }
+\value{
+An object of class \code{R2PptxPresentation}.
+}
 \description{
 Make a new `R2PptxPresentation`. Presentations represent PowerPoint decks.
 }

@@ -93,3 +93,7 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Check .Rd
+        if: always()
+        shell: Rscript check_rd.R

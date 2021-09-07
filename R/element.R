@@ -24,6 +24,7 @@ setClass(
 #' @param key character. Name of the placeholder label for this element.
 #' @param value object. Object to put into a PowerPoint slide, eg text or a plot.
 #' @export
+#' @return An object of class \code{R2PptxElement}
 new_element <- function(key, value) {
   if (missing(key)) {
     stop("`key` was missing. See `officer::layout_summary()` for layout options.")
