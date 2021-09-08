@@ -13,6 +13,10 @@ slide.}
 \item{elements}{list. List of `R2PptxElements` to initialize the slide with.
 Defaults to empty list.}
 }
+\value{
+An object of class \code{R2PptxSlide} representing a future
+  PowerPoint slide.
+}
 \description{
 Make a `R2PptxSlide` object representing a PowerPoint slide.
 }

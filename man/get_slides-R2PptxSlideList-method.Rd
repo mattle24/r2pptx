@@ -7,7 +7,10 @@
 \S4method{get_slides}{R2PptxSlideList}(x)
 }
 \arguments{
-\item{x}{R2PptxSlideList object}
+\item{x}{\code{R2PptxSlideList} object}
+}
+\value{
+List, a list of \code{R2PptxSlide} objects.
 }
 \description{
 method to get slides

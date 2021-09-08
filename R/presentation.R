@@ -19,7 +19,6 @@ setClass(
 )
 
 
-
 setValidity("R2PptxPresentation", function(object) {
   if (!all(sapply(object@slides, function(x) inherits(x, "R2PptxSlide")))) {
     "Each slide must be a `R2PptxSlide` object"
@@ -44,7 +43,9 @@ setValidity("R2PptxPresentation", function(object) {
 #' @param slides list. Optional. List of slides to initiate the presentation
 #'   with.
 #' @export
-#' @return An object of class \code{R2PptxPresentation}.
+#' @example man-roxygen/basic_example.R
+#' @return An object of class \code{R2PptxPresentation} representing a future
+#'   PowerPoint presentation.
 new_presentation <- function(
   template_path = getOption("default_pptx_template"),
   slides = list()
@@ -85,10 +86,13 @@ setMethod(
 
 #' Add R2Ppptx slidelist
 #'
-#' Add an `R2PptxSlideList` object to a presentation.
-#' @param e1 `R2PptxPresentation` object
-#' @param e2 `R2PptxSlideList` object
+#' Add an \code{R2PptxSlideList} object to a presentation.
+#' @param e1 \code{R2PptxPresentation} object
+#' @param e2 \code{R2PptxSlideList} object
 #' @keywords internal
+#' @return An object of class \code{R2PptxPresentation}, which is the
+#'   \code{R2PptxPresentation} object \code{e1} with an additional slide, the
+#'   \code{R2pptxSlide} object \code{e2}.
 setMethod(
   "+",
   signature = signature(e1 = "R2PptxPresentation", e2 = "R2PptxSlideList"),
@@ -105,7 +109,7 @@ setMethod(
 # write pptx --------------------------------------------------------------
 
 #' @describeIn write_pptx Write a presentation to a `.pptx` file
-#' @return An object of class \code{R2PptxPresentation}
+#' @return Returns the \code{R2PptxPresentation} object given to the function.
 setMethod(
   "write_pptx",
   "R2PptxPresentation",
@@ -146,11 +150,14 @@ setMethod("length", "R2PptxPresentation", function(x) length(x@slides))
 #' @export
 setGeneric("template_path", function(x) standardGeneric("template_path"))
 
-#' @describeIn template_path Get the template path of an `R2PptxPresentation`
-#'   object.
+
+#' @describeIn template_path Get the template path of an
+#'   \code{R2PptxPresentation} object.
+#' @return Character, the file path this \code{R2PptxPresentation} points to.
 setMethod("template_path", "R2PptxPresentation", function(x) {
   x@template_path
 })
+
 
 #' Set template path
 #' @param x object to set the template path of.
@@ -158,8 +165,10 @@ setMethod("template_path", "R2PptxPresentation", function(x) {
 #' @export
 setGeneric("template_path<-", function(x, value) standardGeneric("template_path<-"))
 
-#' @describeIn template_path-set Set the template path of an `R2PptxPresentation`
+#' @describeIn template_path-set Set the template path of an \code{R2PptxPresentation}
 #'   object.
+#' @return The \code{R2PptxPresentation} object \code{x} with the changed
+#'   template path.
 setMethod("template_path<-", "R2PptxPresentation", function(x, value) {
   x@template_path <- value
   validObject(x)
