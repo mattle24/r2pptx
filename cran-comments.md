@@ -1,8 +1,9 @@
 ## Resubmission
 
-* Added \value tags to 17 .Rd files.
+This is a resubmission. In this version I have:
 
-* Added an example to `new_presentation()`, `new_slide()`, 
+* Added \value tags to 17 .Rd files with the structure of the output (class) and
+also what the output means.
 
 # r2pptx 0.1.0
 
