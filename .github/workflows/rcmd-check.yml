@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - rel-*
 
 name: R-CMD-check
 
