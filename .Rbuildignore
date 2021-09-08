@@ -10,3 +10,4 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^check_rd\.R$
+^man-roxygen$
