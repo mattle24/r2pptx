@@ -24,7 +24,6 @@ setClass(
 #' @param key character. Name of the placeholder label for this element.
 #' @param value object. Object to put into a PowerPoint slide, eg text or a plot.
 #' @export
-#' @example man-roxygen/basic_example.R
 #' @return An object of class \code{R2PptxElement} representing something to put
 #'   on a slide.
 new_element <- function(key, value) {

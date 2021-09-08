@@ -43,7 +43,6 @@ setValidity("R2PptxPresentation", function(object) {
 #' @param slides list. Optional. List of slides to initiate the presentation
 #'   with.
 #' @export
-#' @example man-roxygen/basic_example.R
 #' @return An object of class \code{R2PptxPresentation} representing a future
 #'   PowerPoint presentation.
 new_presentation <- function(

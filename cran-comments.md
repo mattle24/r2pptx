@@ -1,3 +1,9 @@
+## Resubmission
+
+* Added \value tags to 17 .Rd files.
+
+* Added an example to `new_presentation()`, `new_slide()`, 
+
 # r2pptx 0.1.0
 
 This is the first submission of r2pptx to CRAN.
