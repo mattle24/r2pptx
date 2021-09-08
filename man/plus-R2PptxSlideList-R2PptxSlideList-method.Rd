@@ -7,9 +7,13 @@
 \S4method{+}{R2PptxSlideList,R2PptxSlideList}(e1, e2)
 }
 \arguments{
-\item{e1}{`R2PptxSlideList` object}
+\item{e1}{\code{R2PptxSlideList} object}
 
-\item{e2}{`R2PptxSlideList` object}
+\item{e2}{\code{R2PptxSlideList} object}
+}
+\value{
+An object of class \code{R2PptxSlideList} which is \code{e1} with
+  additional slides (all the slides in \code{e2}).
 }
 \description{
 Add slidelist to slidelist

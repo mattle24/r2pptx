@@ -7,12 +7,16 @@
 new_slide(layout, elements = list())
 }
 \arguments{
-\item{layout}{character. Name of the powerpoint layout to use for this
+\item{layout}{character. Name of the PowerPoint layout to use for this
 slide.}
 
 \item{elements}{list. List of `R2PptxElements` to initialize the slide with.
 Defaults to empty list.}
 }
+\value{
+An object of class \code{R2PptxSlide} representing a future
+  PowerPoint slide.
+}
 \description{
-Make a `R2PptxSlide` object representing a powerpoint slide.
+Make a `R2PptxSlide` object representing a PowerPoint slide.
 }

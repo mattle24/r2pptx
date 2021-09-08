@@ -7,9 +7,13 @@
 new_slidelist(slides = list())
 }
 \arguments{
-\item{slides}{list. List of `R2PptxSlide` objects to initialize the list with.
+\item{slides}{list. List of \code{R2PptxSlide} objects to initialize the list with.
 Defaults to empty list.}
 }
+\value{
+An object of class \code{R2PptxSlideList} representing a list of
+  \code{R2pptxSlide} object.
+}
 \description{
-Make a `R2PptxSlideList` object representing a list of powerpoint slides
+Make a \code{R2PptxSlideList} object representing a list of PowerPoint slides
 }

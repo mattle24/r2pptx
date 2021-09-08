@@ -5,8 +5,8 @@ NULL
 
 #' Slide
 #'
-#' An S4 class to represent a powerpoint slide
-#' @slot layout character. Name of the powerpoint layout to use for this
+#' An S4 class to represent a PowerPoint slide
+#' @slot layout character. Name of the PowerPoint layout to use for this
 #'   slide.
 #' @slot elements list. List of `R2PptxElement` objects.
 #' @export
@@ -19,11 +19,6 @@ setClass(
   )
 )
 
-# length
-
-#' get slide length (elements)
-#' @rdname length
-setMethod("length", "R2PptxSlide", function(x) length(x@elements))
 
 # show method
 setMethod(
@@ -40,14 +35,17 @@ setMethod(
   }
 )
 
+
 #' New slide
 #'
-#' Make a `R2PptxSlide` object representing a powerpoint slide.
-#' @param layout character. Name of the powerpoint layout to use for this
+#' Make a `R2PptxSlide` object representing a PowerPoint slide.
+#' @param layout character. Name of the PowerPoint layout to use for this
 #'   slide.
 #' @param elements list. List of `R2PptxElements` to initialize the slide with.
 #'   Defaults to empty list.
 #' @export
+#' @return An object of class \code{R2PptxSlide} representing a future
+#'   PowerPoint slide.
 new_slide <- function(layout, elements = list()) {
   if (missing(layout)) {
     stop("`layout` was missing. See `officer::plot_layout_properties()` for key options.")
@@ -66,6 +64,7 @@ new_slide <- function(layout, elements = list()) {
 #' Returns the number of elements in a slide
 #' @rdname length
 #' @param x `R2PptxSlide` object
+#' @return Integer, number of elements in the \code{R2PptxSlide} object
 setMethod("length", "R2PptxSlide", function(x) length(x@elements))
 
 
@@ -82,10 +81,12 @@ setMethod(
 
 #' Add element to slide
 #'
-#' Add an `R2PptxElement` object to an `R2PptxSlide` object.
-#' @param e1 `R2PptxSlide` object
-#' @param e2 `R2PptxElement` object
+#' Add an \code{R2PptxElement} object to an \code{R2PptxSlide} object.
+#' @param e1 \code{R2PptxSlide} object
+#' @param e2 \code{R2PptxElement} object
 #' @export
+#' @return An object of class \code{R2PptxSlide}, which is \code{e1} with an
+#' additional element \code{e2}
 setMethod(
   "+",
   signature = signature(e1 = "R2PptxSlide", e2 = "R2PptxElement"),
@@ -99,10 +100,10 @@ setMethod(
 
 #' Slide list
 #'
-#' `R2PptxSlideList` is an S4 class to contain groups of `R2PptxSlide` objects
-#' that are not part of a presentation. It is meant to be used to create lists
-#' of slides and then be able to add the list easily to a presentation.
-#' @slot slides list. A list of `R2PptxSlide` objects
+#' \code{R2PptxSlideList} is an S4 class to contain groups of \code{R2PptxSlide}
+#' objects that are not part of a presentation. It is meant to be used to create
+#' lists of slides and then be able to add the list easily to a presentation.
+#' @slot slides list. A list of \code{R2PptxSlide} objects
 #' @export
 setClass(
   Class = "R2PptxSlideList",
@@ -127,10 +128,12 @@ setValidity("R2PptxSlideList", function(object) {
 
 #' New slide list
 #'
-#' Make a `R2PptxSlideList` object representing a list of powerpoint slides
-#' @param slides list. List of `R2PptxSlide` objects to initialize the list with.
+#' Make a \code{R2PptxSlideList} object representing a list of PowerPoint slides
+#' @param slides list. List of \code{R2PptxSlide} objects to initialize the list with.
 #'   Defaults to empty list.
 #' @export
+#' @return An object of class \code{R2PptxSlideList} representing a list of
+#'   \code{R2pptxSlide} object.
 new_slidelist <- function(slides = list()) {
   if (is(slides, "R2PptxSlide")) {
     slides <- list(slides)
@@ -140,6 +143,8 @@ new_slidelist <- function(slides = list()) {
 
 
 setGeneric("asSlideList", function(x) standardGeneric("asSlideList"))
+
+
 setMethod(
   "asSlideList",
   "list",
@@ -147,6 +152,8 @@ setMethod(
     new("R2PptxSlideList", slides = x)
   }
 )
+
+
 setMethod(
   "asSlideList",
   "R2PptxSlide",
@@ -158,7 +165,8 @@ setMethod(
 setGeneric("get_slides", function(x) standardGeneric("get_slides"))
 
 #' method to get slides
-#' @param x R2PptxSlideList object
+#' @param x \code{R2PptxSlideList} object
+#' @returns List, a list of \code{R2PptxSlide} objects.
 setMethod(
   "get_slides",
   "R2PptxSlideList",
@@ -176,6 +184,7 @@ setMethod(
   }
 )
 
+
 # slide list and a slide
 setMethod(
   "append_slide",
@@ -186,6 +195,7 @@ setMethod(
     e1
   }
 )
+
 
 # slide and a slide list
 setMethod(
@@ -201,9 +211,12 @@ setMethod(
 
 #' Add slide to slidelist
 #'
-#' @param e1 `R2PptxSlide` object
-#' @param e2 `R2PptxSlideList` object
+#' @param e1 \code{PR2PptxSlide} object
+#' @param e2 \code{R2PptxSlideList} object
 #' @export
+#' @return An object of class \code{R2PptxSlideList} which is the
+#'   \code{R2PptxSlideList} list \code{e1} with an additional slide which is
+#'   \code{e2}.
 setMethod(
   "+",
   signature = signature(e1 = "R2PptxSlide", e2 = "R2PptxSlideList"),
@@ -212,11 +225,14 @@ setMethod(
   }
 )
 
+
 #' Add slidelist to slidelist
 #'
-#' @param e1 `R2PptxSlideList` object
-#' @param e2 `R2PptxSlideList` object
+#' @param e1 \code{R2PptxSlideList} object
+#' @param e2 \code{R2PptxSlideList} object
 #' @export
+#' @return An object of class \code{R2PptxSlideList} which is \code{e1} with
+#'   additional slides (all the slides in \code{e2}).
 setMethod(
   "+",
   signature = signature(e1 = "R2PptxSlideList", e2 = "R2PptxSlideList"),

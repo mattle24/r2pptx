@@ -7,10 +7,14 @@
 \S4method{+}{R2PptxSlide,R2PptxElement}(e1, e2)
 }
 \arguments{
-\item{e1}{`R2PptxSlide` object}
+\item{e1}{\code{R2PptxSlide} object}
 
-\item{e2}{`R2PptxElement` object}
+\item{e2}{\code{R2PptxElement} object}
+}
+\value{
+An object of class \code{R2PptxSlide}, which is \code{e1} with an
+additional element \code{e2}
 }
 \description{
-Add an `R2PptxElement` object to an `R2PptxSlide` object.
+Add an \code{R2PptxElement} object to an \code{R2PptxSlide} object.
 }

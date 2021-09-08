@@ -14,6 +14,9 @@ write_pptx(x, path)
 
 \item{path}{character. File path to write to.}
 }
+\value{
+Returns the \code{R2PptxPresentation} object given to the function.
+}
 \description{
 Write an object to a `.pptx` file.
 }

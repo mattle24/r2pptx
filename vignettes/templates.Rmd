@@ -18,15 +18,15 @@ knitr::opts_chunk$set(
 library(r2pptx)
 ```
 
-Powerpoint templates and layouts are the driving force of `r2pptx`. [David Gohel's officeverse documentation](https://ardata-fr.github.io/officeverse/about-office-documents.html#powerpoint-layouts-and-masters) is excellent, and covers the bases on creating new templates. I'll try to fill in
+PowerPoint templates and layouts are the driving force of `r2pptx`. [David Gohel's officeverse documentation](https://ardata-fr.github.io/officeverse/about-office-documents.html#PowerPoint-layouts-and-masters) is excellent, and covers the bases on creating new templates. I'll try to fill in
 some of the gaps that someone newer to using `officer` or `r2pptx` might be wondering about.
 
-In the way we use them for these packages, powerpoint templates are just normal `.pptx` files. Explicitly, they are not `.potx` files -- `officer` cannot read these files. Powerpoint templates have two sections relevant here -- the normal slides, and the slide master. 
+In the way we use them for these packages, PowerPoint templates are just normal `.pptx` files. Explicitly, they are not `.potx` files -- `officer` cannot read these files. PowerPoint templates have two sections relevant here -- the normal slides, and the slide master. 
 
 The normal slides are what you would see if you presented the slide deck. If you have existing slides in the `.pptx` file you use as your template for `r2pptx`, your output slide deck
 will start with those pre-existing slides. 
 
-The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on -- for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the Powerpoint UI that we can then fill later using `officer` or `r2pptx`. Otherwise, we would need to define the style, size, and location of each element we created using R -- potentially more exact and reproducible, but much harder.
+The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on -- for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the PowerPoint UI that we can then fill later using `officer` or `r2pptx`. Otherwise, we would need to define the style, size, and location of each element we created using R -- potentially more exact and reproducible, but much harder.
 
 We set the template path for the slide decks we create in `r2pptx` via the `presentation` 
 object (the variable doesn't have to be named `presentation`). By default this is the

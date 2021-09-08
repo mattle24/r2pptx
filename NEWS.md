@@ -1,4 +1,4 @@
-# r2pptx 0.0.0.9007 (beta)
+# r2pptx 0.1.0
 
 * `R2PptxSlideList` improvements (#3)
 

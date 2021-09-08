@@ -12,12 +12,15 @@ template_path(x)
 \arguments{
 \item{x}{object to get the template path for.}
 }
+\value{
+Character, the file path this \code{R2PptxPresentation} points to.
+}
 \description{
 Get template path
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{R2PptxPresentation}: Get the template path of an `R2PptxPresentation`
-object.
+\item \code{R2PptxPresentation}: Get the template path of an
+\code{R2PptxPresentation} object.
 }}
 

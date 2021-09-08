@@ -7,9 +7,13 @@
 get_layouts(x)
 }
 \arguments{
-\item{x}{R2PpptxPresentation object}
+\item{x}{\code{R2PpptxPresentation} object}
+}
+\value{
+An object of class \code{data.frame} with fields for the layout name
+  and the name of the slide theme (master).
 }
 \description{
-A thin wrapper around `officer::layout_summary()` to get layouts for
-`R2PpptxPresentation` objects.
+A thin wrapper around \code{officer::layout_summary()} to get layouts for
+\code{R2PpptxPresentation} objects.
 }
