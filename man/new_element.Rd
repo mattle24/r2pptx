@@ -9,7 +9,11 @@ new_element(key, value)
 \arguments{
 \item{key}{character. Name of the placeholder label for this element.}
 
-\item{value}{object. Object to put into a powerpoint slide, eg text or a plot.}
+\item{value}{object. Object to put into a PowerPoint slide, eg text or a plot.}
+}
+\value{
+An object of class \code{R2PptxElement} representing something to put
+  on a slide.
 }
 \description{
 Make a new `R2PptxElement`. Element represent text, a flextable, an image, a

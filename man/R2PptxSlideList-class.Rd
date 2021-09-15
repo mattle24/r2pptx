@@ -5,13 +5,13 @@
 \alias{R2PptxSlideList-class}
 \title{Slide list}
 \description{
-`R2PptxSlideList` is an S4 class to contain groups of `R2PptxSlide` objects
-that are not part of a presentation. It is meant to be used to create lists
-of slides and then be able to add the list easily to a presentation.
+\code{R2PptxSlideList} is an S4 class to contain groups of \code{R2PptxSlide}
+objects that are not part of a presentation. It is meant to be used to create
+lists of slides and then be able to add the list easily to a presentation.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{slides}}{list. A list of `R2PptxSlide` objects}
+\item{\code{slides}}{list. A list of \code{R2PptxSlide} objects}
 }}
 

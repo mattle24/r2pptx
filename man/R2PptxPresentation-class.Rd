@@ -5,14 +5,14 @@
 \alias{R2PptxPresentation-class}
 \title{Presentation}
 \description{
-An S4 class to represent a powerpoint presentation.
+An S4 class to represent a PowerPoint presentation.
 }
 \section{Slots}{
 
 \describe{
 \item{\code{slides}}{list. List of `R2PptxSlide` objects.}
 
-\item{\code{template_path}}{character. File path to the Powerpoint template used
+\item{\code{template_path}}{character. File path to the PowerPoint template used
 for this presentation.}
 }}
 

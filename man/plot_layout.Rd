@@ -7,11 +7,14 @@
 plot_layout(x, layout)
 }
 \arguments{
-\item{x}{R2PpptxPresentation object}
+\item{x}{\code{R2PpptxPresentation} object}
 
 \item{layout}{character. Name of the layout to see properties for.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
-A thin wrapper around `officer::plot_layout_properties()` to plot
-layouts for `R2PpptxPresentation` objects.
+A thin wrapper around \code{officer::plot_layout_properties()} to plot
+layouts for \code{R2PpptxPresentation} objects.
 }

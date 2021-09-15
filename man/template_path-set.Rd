@@ -14,12 +14,16 @@ template_path(x) <- value
 
 \item{value}{character. File path of the new template}
 }
+\value{
+The \code{R2PptxPresentation} object \code{x} with the changed
+  template path.
+}
 \description{
 Set template path
 }
 \section{Functions}{
 \itemize{
-\item \code{template_path<-,R2PptxPresentation-method}: Set the template path of an `R2PptxPresentation`
+\item \code{template_path<-,R2PptxPresentation-method}: Set the template path of an \code{R2PptxPresentation}
 object.
 }}
 

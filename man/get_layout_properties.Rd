@@ -7,11 +7,15 @@
 get_layout_properties(x, layout)
 }
 \arguments{
-\item{x}{R2PpptxPresentation object}
+\item{x}{\code{R2PpptxPresentation} object}
 
 \item{layout}{character. Name of the layout to see properties for.}
 }
+\value{
+An object of class \code{data.frame} with fields for placeholder
+  attributes and one row per placeholder element.
+}
 \description{
-A thin wrapper around `officer::plot_layout_properties()` to get layouts
-properties for `R2PpptxPresentation` objects.
+A thin wrapper around \code{officer::plot_layout_properties()} to get layouts
+properties for \code{R2PpptxPresentation} objects.
 }

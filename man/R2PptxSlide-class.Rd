@@ -5,12 +5,12 @@
 \alias{R2PptxSlide-class}
 \title{Slide}
 \description{
-An S4 class to represent a powerpoint slide
+An S4 class to represent a PowerPoint slide
 }
 \section{Slots}{
 
 \describe{
-\item{\code{layout}}{character. Name of the powerpoint layout to use for this
+\item{\code{layout}}{character. Name of the PowerPoint layout to use for this
 slide.}
 
 \item{\code{elements}}{list. List of `R2PptxElement` objects.}

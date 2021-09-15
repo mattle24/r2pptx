@@ -1,19 +1,19 @@
 Package: r2pptx
 Type: Package
-Title: Object Oriented R -> Powerpoint
-Version: 0.0.0.9007
+Title: Object Oriented R -> PowerPoint
+Version: 0.1.0
 Authors@R:
     c(person(given = "Matt",
              family = "Lehman",
              role = c("aut", "cre"),
              email = "mhlehman24@gmail.com")
     )
-Description: A R package to provide a friendly object oriented API for creating
-    Powerpoint slide decks in R.
-URL: https://mattle24.github.io/r2pptx, https://github.com/mattle24/r2pptx
-License: GPL (>= 3) + file LICENSE
+Description: Provides a friendly, object oriented API for creating PowerPoint
+    slide decks in R.
+URL: https://mattle24.github.io/r2pptx/, https://github.com/mattle24/r2pptx
+BugReports: https://github.com/mattle24/r2pptx/issues
+License: GPL-3
 Encoding: UTF-8
-LazyData: true
 RoxygenNote: 7.1.1
 Depends:
     methods,
@@ -22,6 +22,7 @@ Imports:
     glue,
     officer
 Suggests:
+    datasets,
     ggplot2,
     testthat (>= 3.0.0),
     knitr,

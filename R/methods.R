@@ -12,6 +12,9 @@ NULL
 #'   `R2PptxPresentation`, `R2PptxSlide`, or `R2PptxSlideList`.
 #' @param e2 `R2PptxSlide` object
 #' @export
+#' @return If \code{e1} is an object of class \code{R2PptxPresentation} then
+#'   returns an object of class \code{R2PptxPresentation}. Otherwise returns an
+#'   object of class \code{R2PptxSlideList}
 setMethod(
   "+",
   signature = signature(e1 = "R2Pptx", e2 = "R2PptxSlide"),

@@ -7,11 +7,16 @@
 \S4method{+}{R2PptxPresentation,R2PptxSlideList}(e1, e2)
 }
 \arguments{
-\item{e1}{`R2PptxPresentation` object}
+\item{e1}{\code{R2PptxPresentation} object}
 
-\item{e2}{`R2PptxSlideList` object}
+\item{e2}{\code{R2PptxSlideList} object}
+}
+\value{
+An object of class \code{R2PptxPresentation}, which is the
+  \code{R2PptxPresentation} object \code{e1} with an additional slide, the
+  \code{R2pptxSlide} object \code{e2}.
 }
 \description{
-Add an `R2PptxSlideList` object to a presentation.
+Add an \code{R2PptxSlideList} object to a presentation.
 }
 \keyword{internal}

@@ -4,6 +4,10 @@
 ^doc$
 ^Meta$
 ^docs$
-^_pkgdown.yml$
+^_pkgdown\.yml$
 ^.github$
 ^LICENSE\.md$
+^cran-comments\.md$
+^CRAN-RELEASE$
+^check_rd\.R$
+^man-roxygen$

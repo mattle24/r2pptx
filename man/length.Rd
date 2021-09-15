@@ -3,16 +3,19 @@
 \name{length,R2PptxSlide-method}
 \alias{length,R2PptxSlide-method}
 \alias{length,R2PptxPresentation-method}
-\title{get slide length (elements)}
+\title{Get slide length}
 \usage{
-\S4method{length}{R2PptxSlide}(x)
-
 \S4method{length}{R2PptxSlide}(x)
 
 \S4method{length}{R2PptxPresentation}(x)
 }
 \arguments{
 \item{x}{`R2PptxSlide` object}
+}
+\value{
+Integer, number of elements in the \code{R2PptxSlide} object
+
+Integer, the number of slides in the presentation.
 }
 \description{
 Returns the number of elements in a slide
