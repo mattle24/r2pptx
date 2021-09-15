@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2pptx</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -103,11 +103,11 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mattle24.github.io/r2pptx">r2pptx</a></span><span class="op">)</span></code></pre></div>
-<p>Powerpoint templates and layouts are the driving force of <code>r2pptx</code>. <a href="https://ardata-fr.github.io/officeverse/about-office-documents.html#powerpoint-layouts-and-masters">David Gohel’s officeverse documentation</a> is excellent, and covers the bases on creating new templates. I’ll try to fill in some of the gaps that someone newer to using <code>officer</code> or <code>r2pptx</code> might be wondering about.</p>
-<p>In the way we use them for these packages, powerpoint templates are just normal <code>.pptx</code> files. Explicitly, they are not <code>.potx</code> files – <code>officer</code> cannot read these files. Powerpoint templates have two sections relevant here – the normal slides, and the slide master.</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mattle24.github.io/r2pptx/">r2pptx</a></span><span class="op">)</span></code></pre></div>
+<p>PowerPoint templates and layouts are the driving force of <code>r2pptx</code>. <a href="https://ardata-fr.github.io/officeverse/about-office-documents.html#PowerPoint-layouts-and-masters">David Gohel’s officeverse documentation</a> is excellent, and covers the bases on creating new templates. I’ll try to fill in some of the gaps that someone newer to using <code>officer</code> or <code>r2pptx</code> might be wondering about.</p>
+<p>In the way we use them for these packages, PowerPoint templates are just normal <code>.pptx</code> files. Explicitly, they are not <code>.potx</code> files – <code>officer</code> cannot read these files. PowerPoint templates have two sections relevant here – the normal slides, and the slide master.</p>
 <p>The normal slides are what you would see if you presented the slide deck. If you have existing slides in the <code>.pptx</code> file you use as your template for <code>r2pptx</code>, your output slide deck will start with those pre-existing slides.</p>
-<p>The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on – for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the Powerpoint UI that we can then fill later using <code>officer</code> or <code>r2pptx</code>. Otherwise, we would need to define the style, size, and location of each element we created using R – potentially more exact and reproducible, but much harder.</p>
+<p>The slide master contains what we call layouts. These are blueprints for how new slides will be created. In the layouts, placeholders are created to stand in for content you will input later on – for example an empty title text box. These are very useful for us, because they let us define style, size, and location for elements through the PowerPoint UI that we can then fill later using <code>officer</code> or <code>r2pptx</code>. Otherwise, we would need to define the style, size, and location of each element we created using R – potentially more exact and reproducible, but much harder.</p>
 <p>We set the template path for the slide decks we create in <code>r2pptx</code> via the <code>presentation</code> object (the variable doesn’t have to be named <code>presentation</code>). By default this is the default template included in the <code>officer</code> package. We can get the template path using the <code><a href="../reference/template_path.html">template_path()</a></code> method.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
@@ -125,12 +125,12 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">new_template_path</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpCL3eDH/new_template1816699c10ed.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpQmS7mb/new_template16a44ac9b9a.pptx"</span></code></pre></div>
 <p>You can also set the template path when you create the presentation – this is probably the easier way to set your template path.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="va">new_template_path</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpCL3eDH/new_template1816699c10ed.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpQmS7mb/new_template16a44ac9b9a.pptx"</span></code></pre></div>
 <p>And the code will fail if the template path doesn’t point to an existing file.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="st">"some_fake_template_path.pptx"</span><span class="op">)</span>
@@ -143,7 +143,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="st">"default_pptx_template"</span> <span class="op">=</span> <span class="va">new_template_path</span><span class="op">)</span>
 <span class="va">presentation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_presentation.html">new_presentation</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="../reference/template_path.html">template_path</a></span><span class="op">(</span><span class="va">presentation</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpCL3eDH/new_template1816699c10ed.pptx"</span></code></pre></div>
+<span class="co">#&gt; [1] "/var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpQmS7mb/new_template16a44ac9b9a.pptx"</span></code></pre></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
