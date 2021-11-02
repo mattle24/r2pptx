@@ -4,6 +4,10 @@
 # r2pptx <img src="man/figures/logo.png" align="right" width="100" />
 
 <!-- badges: start -->
+
+[![CRAN
+status](https://www.r-pkg.org/badges/version/r2pptx)](https://CRAN.R-project.org/package=r2pptx)
+[![Downloads](https://cranlogs.r-pkg.org/badges/r2pptx)](https://CRAN.R-project.org/package=r2pptx)
 <!-- badges: end -->
 
 # Overview
