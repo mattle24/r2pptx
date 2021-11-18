@@ -3,8 +3,7 @@
 \docType{class}
 \name{R2PptxLocation-class}
 \alias{R2PptxLocation-class}
-\title{Placeholder Location}
+\title{Location}
 \description{
-A Location is used to place an element on a slide. This class handles
-locations that are the names of PowerPoint placeholders.
+A Location is used to place an element on a slide.
 }

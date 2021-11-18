@@ -1,7 +1,6 @@
-#' Placeholder Location
+#' Location
 #'
-#' A Location is used to place an element on a slide. This class handles
-#' locations that are the names of PowerPoint placeholders.
+#' A Location is used to place an element on a slide.
 setClass(
   "R2PptxLocation",
   slots = c(
@@ -16,19 +15,8 @@ R2PptxLocation <- function(ph_location_fn, args) {
 }
 
 
-setGeneric("new_location", function(x, ...) standardGeneric("new_location"))
-setMethod(
-  "new_location",
-  "character",
-  function(x) R2PptxLocation(ph_location_fn = officer::ph_location_label, args = list(ph_label = x))
-)
-
-setMethod(
-  "new_location",
-  "function",
-  function(x, ...) {
-    args <- list(...)
-    R2PptxLocation(ph_location_fn = x, args = args)
-  }
-)
-
+#' @param ph_location_fn function. Function in the \code{officer::ph_location*} family
+#' @param ... args to pass to \code{ph_location_fn}
+new_location <- function(ph_location_fn, ...) {
+  new("R2PptxLocation", ph_location_fn = ph_location_fn, args = list(...))
+}

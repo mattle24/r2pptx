@@ -122,8 +122,6 @@ setMethod(
                                      layout = slide@layout,
                                      master = pptx_obj$masterLayouts$names()[1])
       for (element in slide@elements) {
-        # TODO this will be different if the location is a real location and
-        # not a placeholder label. Very future TODO.
         pptx_obj <- add_pptx(element, pptx_obj)
       }
     }
