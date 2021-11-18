@@ -4,7 +4,7 @@
 \alias{new_element}
 \title{New Element}
 \usage{
-new_element(key, value)
+new_element(key, value, ...)
 }
 \arguments{
 \item{key}{character. Name of the placeholder label for this element.}
