@@ -7,3 +7,11 @@
 \description{
 A Location is used to place an element on a slide.
 }
+\section{Slots}{
+
+\describe{
+\item{\code{ph_location_fn}}{function. Function in the \code{officer::ph_location*} family}
+
+\item{\code{args}}{list. Arguments to pass to \code{ph_location_fn}}
+}}
+

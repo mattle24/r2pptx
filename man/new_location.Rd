@@ -27,7 +27,6 @@ presentation <- new_presentation() +
 path <- tempfile(fileext = ".pptx")
 write_pptx(presentation, path)
 if (interactive()) browseURL(path)
-
 }
 \seealso{
 \link[officer]{ph_location}

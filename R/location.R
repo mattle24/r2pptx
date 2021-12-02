@@ -1,6 +1,9 @@
 #' Location
 #'
 #' A Location is used to place an element on a slide.
+#' @slot ph_location_fn function. Function in the \code{officer::ph_location*} family
+#' @slot args list. Arguments to pass to \code{ph_location_fn}
+#' @export
 setClass(
   "R2PptxLocation",
   slots = c(
@@ -31,3 +34,25 @@ setClass(
 new_location <- function(ph_location_fn, ...) {
   new("R2PptxLocation", ph_location_fn = ph_location_fn, args = list(...))
 }
+
+
+#' @keywords internal
+setGeneric("ph_location_fn", function(x) standardGeneric("ph_location_fn"))
+
+#' @keywords internal
+setMethod(
+  "ph_location_fn",
+  "R2PptxLocation",
+  function(x) x@ph_location_fn
+)
+
+
+#' @keywords internal
+setGeneric("ph_location_args", function(x) standardGeneric("ph_location_args"))
+
+#' @keywords internal
+setMethod(
+  "ph_location_args",
+  "R2PptxLocation",
+  function(x) x@args
+)
