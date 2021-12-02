@@ -1,3 +1,8 @@
+# r2pptx 0.1.0.9001
+
+* Allow custom locations by using `new_location()` when calling `new_element()` (#8).
+
+
 # r2pptx 0.1.0
 
 * `R2PptxSlideList` improvements (#3)
