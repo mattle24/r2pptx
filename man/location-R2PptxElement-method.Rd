@@ -6,6 +6,9 @@
 \usage{
 \S4method{location}{R2PptxElement}(x)
 }
+\value{
+\code{R2PptxLocation} object
+}
 \description{
 Get location (key) of element
 }

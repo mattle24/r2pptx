@@ -66,22 +66,28 @@ setMethod(
   }
 )
 
+
 #' @keywords internal
 setGeneric("value", function(x) standardGeneric("value"))
 
+
 #' Get value of element
 #' @keywords internal
+#' @return Object to put into a PowerPoint slide, eg text or a plot.
 setMethod(
   "value",
   "R2PptxElement",
   function(x) x@value
 )
 
+
 #' @keywords internal
 setGeneric("location", function(x) standardGeneric("location"))
 
+
 #' Get location (key) of element
 #' @keywords internal
+#' @return \code{R2PptxLocation} object
 setMethod(
   "location",
   "R2PptxElement",
