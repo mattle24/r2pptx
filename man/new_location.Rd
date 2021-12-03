@@ -11,6 +11,10 @@ new_location(ph_location_fn, ...)
 
 \item{...}{args to pass to \code{ph_location_fn}}
 }
+\value{
+An object of class \code{R2PptxLocation} representing the location to
+  place an \code{R2PptxElement}.
+}
 \description{
 New Location
 }

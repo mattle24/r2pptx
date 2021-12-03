@@ -30,6 +30,8 @@ setClass(
 #' path <- tempfile(fileext = ".pptx")
 #' write_pptx(presentation, path)
 #' if (interactive()) browseURL(path)
+#' @return An object of class \code{R2PptxLocation} representing the location to
+#'   place an \code{R2PptxElement}.
 #' @export
 new_location <- function(ph_location_fn, ...) {
   new("R2PptxLocation", ph_location_fn = ph_location_fn, args = list(...))

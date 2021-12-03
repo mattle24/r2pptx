@@ -3,7 +3,6 @@
 export("template_path<-")
 export(get_layout_properties)
 export(get_layouts)
-export(new_element)
 export(new_location)
 export(new_presentation)
 export(new_slide)

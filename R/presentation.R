@@ -103,7 +103,21 @@ setMethod(
   }
 )
 
-
+# this causes a warning when documenting because `rpptx` is not a registered
+# class. I'm not sure how to register it and `check` doesn't seem to care so will
+# ignore for now.
+setMethod(
+  "append_element",
+  signature = signature(e1 = "rpptx", e2 = "R2PptxElement"),
+  function(e1, e2) {
+    location <- location(e2)
+    officer::ph_with(
+      e1,
+      value = value(e2),
+      location = do.call(ph_location_fn(location), ph_location_args(location))
+    )
+  }
+)
 
 # write pptx --------------------------------------------------------------
 
@@ -122,7 +136,7 @@ setMethod(
                                      layout = slide@layout,
                                      master = pptx_obj$masterLayouts$names()[1])
       for (element in slide@elements) {
-        pptx_obj <- add_pptx(element, pptx_obj)
+        pptx_obj <- append_element(pptx_obj, element)
       }
     }
     print(pptx_obj, target = path)
