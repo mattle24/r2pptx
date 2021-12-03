@@ -1,7 +1,7 @@
 Package: r2pptx
 Type: Package
 Title: Object Oriented R -> PowerPoint
-Version: 0.1.0
+Version: 0.1.0.9001
 Authors@R:
     c(person(given = "Matt",
              family = "Lehman",

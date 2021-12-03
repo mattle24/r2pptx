@@ -103,7 +103,21 @@ setMethod(
   }
 )
 
-
+# this causes a warning when documenting because `rpptx` is not a registered
+# class. I'm not sure how to register it and `check` doesn't seem to care so will
+# ignore for now.
+setMethod(
+  "append_element",
+  signature = signature(e1 = "rpptx", e2 = "R2PptxElement"),
+  function(e1, e2) {
+    location <- location(e2)
+    officer::ph_with(
+      e1,
+      value = value(e2),
+      location = do.call(ph_location_fn(location), ph_location_args(location))
+    )
+  }
+)
 
 # write pptx --------------------------------------------------------------
 
@@ -113,20 +127,16 @@ setMethod(
   "write_pptx",
   "R2PptxPresentation",
   function(x, path) {
-    pptx_obj <- officer::read_pptx(path = x@template_path)
+    pptx_obj <- officer::read_pptx(path = template_path(x))
 
+    # TODO method to get slides
     for (slide in x@slides) {
+      # TODO method to get layout
       pptx_obj <- officer::add_slide(pptx_obj,
                                      layout = slide@layout,
                                      master = pptx_obj$masterLayouts$names()[1])
       for (element in slide@elements) {
-        # TODO this will be different if the location is a real location and
-        # not a placeholder label. Very future TODO.
-        pptx_obj <- officer::ph_with(
-          pptx_obj,
-          value = element@value,
-          location = officer::ph_location_label(element@key@location)
-        )
+        pptx_obj <- append_element(pptx_obj, element)
       }
     }
     print(pptx_obj, target = path)
