@@ -1,78 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mattle24.github.io/r2pptx//index.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/404.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/R2PptxElement-class.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/CODE_OF_CONDUCT.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/R2PptxLocation-class.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/articles/basic_usage.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/R2PptxPresentation-class.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/R2PptxSlide-class.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/articles/templates.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/R2PptxSlideList-class.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/authors.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/get_layout_properties.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/index.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/get_layouts.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/news/index.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/get_slides-R2PptxSlideList-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/R2PptxElement-class.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/length.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/R2PptxLocation-class.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/new_element.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/R2PptxPresentation-class.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/new_presentation.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/R2PptxSlide-class.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/new_slide.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/R2PptxSlideList-class.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/new_slidelist.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/get_layout_properties.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plot_layout.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/get_layouts.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2Pptx-R2PptxSlide-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/get_slides-R2PptxSlideList-method.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxPresentation-R2PptxSlideList-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxSlide-R2PptxElement-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/length.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxSlide-R2PptxSlideList-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/location-R2PptxElement-method.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/plus-R2PptxSlideList-R2PptxSlideList-method.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_element-R2PptxLocation-method.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/template_path-set.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_element-character-method.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/template_path.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_element.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//reference/write_pptx.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_location.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//articles/basic_usage.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_presentation.html</loc>
   </url>
   <url>
-    <loc>https://mattle24.github.io/r2pptx//articles/templates.html</loc>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_slide.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/new_slidelist.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plot_layout.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plus-R2Pptx-R2PptxSlide-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plus-R2PptxPresentation-R2PptxSlideList-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plus-R2PptxSlide-R2PptxElement-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plus-R2PptxSlide-R2PptxSlideList-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/plus-R2PptxSlideList-R2PptxSlideList-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/template_path-set.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/template_path.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/value-R2PptxElement-method.html</loc>
+  </url>
+  <url>
+    <loc>https://mattle24.github.io/r2pptx/reference/write_pptx.html</loc>
   </url>
 </urlset>
