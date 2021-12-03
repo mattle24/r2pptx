@@ -20,15 +20,22 @@ reference:
   - new_presentation
   - new_slide
   - new_element
+  - new_location
+  - new_slidelist
 
 - title: Utility functions
   contents:
   - get_layout_properties
   - get_layouts
   - plot_layout
+  - template_path
+  - template_path<-
+  - write_pptx
 
 - title: Classes
   contents:
   - R2PptxPresentation-class
   - R2PptxElement-class
   - R2PptxSlide-class
+  - R2PptxSlideList-class
+  - R2PptxLocation-class
