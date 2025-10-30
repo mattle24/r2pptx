@@ -1,335 +1,148 @@
-extract_slidenum_style_from_template <- function(template_path, layout_name) {
-  temp_dir <- tempfile()
-  dir.create(temp_dir)
-  on.exit(unlink(temp_dir, recursive = TRUE))
-
-  utils::unzip(template_path, exdir = temp_dir)
-
-  template_pres <- officer::read_pptx(template_path)
-  layout_summary <- officer::layout_summary(template_pres)
-  layout_idx <- which(layout_summary$layout == layout_name)
-
-  if (length(layout_idx) == 0) {
-    message(sprintf("Layout '%s' not found", layout_name))
-    return(list(color = "50514F", font = "Calibri", size = 1000))
-  }
-
-  layout_file <- file.path(temp_dir, "ppt", "slideLayouts",
-                           sprintf("slideLayout%d.xml", layout_idx))
-
-  if (!file.exists(layout_file)) {
-    message(sprintf("Layout file not found: %s", layout_file))
-    return(list(color = "50514F", font = "Calibri", size = 1000))
-  }
-
-  layout_xml <- xml2::read_xml(layout_file)
-  slidenum_shape <- xml2::xml_find_first(
-    layout_xml,
-    ".//p:sp[.//p:ph[@type='sldNum']]"
-  )
-
-  if (inherits(slidenum_shape, "xml_missing")) {
-    message(sprintf("No slidenum placeholder found in layout '%s'", layout_name))
-    return(list(color = "50514F", font = "Calibri", size = 1000))
-  }
-
-  color_node <- xml2::xml_find_first(
-    slidenum_shape,
-    ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:solidFill//a:srgbClr"
-  )
-  color <- if (!inherits(color_node, "xml_missing")) {
-    xml2::xml_attr(color_node, "val")
-  } else {
-    NULL
-  }
-
-  font_node <- xml2::xml_find_first(
-    slidenum_shape,
-    ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:latin"
-  )
-  font <- if (!inherits(font_node, "xml_missing")) {
-    xml2::xml_attr(font_node, "typeface")
-  } else {
-    NULL
-  }
-
-  size_node <- xml2::xml_find_first(
-    slidenum_shape,
-    ".//a:lstStyle//a:lvl1pPr//a:defRPr"
-  )
-  size <- if (!inherits(size_node, "xml_missing")) {
-    as.integer(xml2::xml_attr(size_node, "sz"))
-  } else {
-    NULL
-  }
-
-  if (is.null(color) || is.null(font) || is.null(size)) {
-    message(sprintf("Layout '%s' missing styling, checking master slide", layout_name))
-
-    master_files <- list.files(
-      file.path(temp_dir, "ppt", "slideMasters"),
-      pattern = "^slideMaster[0-9]+\\.xml$",
-      full.names = TRUE
-    )
-
-    if (length(master_files) > 0) {
-      master_xml <- xml2::read_xml(master_files[1])
-      master_slidenum <- xml2::xml_find_first(
-        master_xml,
-        ".//p:sp[.//p:ph[@type='sldNum']]"
-      )
-
-      if (!inherits(master_slidenum, "xml_missing")) {
-        if (is.null(color)) {
-          color_node <- xml2::xml_find_first(
-            master_slidenum,
-            ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:solidFill//a:srgbClr"
-          )
-          if (!inherits(color_node, "xml_missing")) {
-            color <- xml2::xml_attr(color_node, "val")
-          }
-        }
-
-        if (is.null(font)) {
-          font_node <- xml2::xml_find_first(
-            master_slidenum,
-            ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:latin"
-          )
-          if (!inherits(font_node, "xml_missing")) {
-            font <- xml2::xml_attr(font_node, "typeface")
-          }
-        }
-
-        if (is.null(size)) {
-          size_node <- xml2::xml_find_first(
-            master_slidenum,
-            ".//a:lstStyle//a:lvl1pPr//a:defRPr"
-          )
-          if (!inherits(size_node, "xml_missing")) {
-            size <- as.integer(xml2::xml_attr(size_node, "sz"))
-          }
-        }
-      }
-    }
-  }
-
-  align_node <- xml2::xml_find_first(
-    slidenum_shape,
-    ".//a:lstStyle//a:lvl1pPr"
-  )
-  align <- if (!inherits(align_node, "xml_missing")) {
-    xml2::xml_attr(align_node, "algn")
-  } else {
-    NULL
-  }
-
-  if (is.null(align) && !is.null(master_files) && length(master_files) > 0) {
-    master_xml <- xml2::read_xml(master_files[1])
-    master_slidenum <- xml2::xml_find_first(
-      master_xml,
-      ".//p:sp[.//p:ph[@type='sldNum']]"
-    )
-    if (!inherits(master_slidenum, "xml_missing")) {
-      align_node <- xml2::xml_find_first(
-        master_slidenum,
-        ".//a:lstStyle//a:lvl1pPr"
-      )
-      if (!inherits(align_node, "xml_missing")) {
-        align <- xml2::xml_attr(align_node, "algn")
-      }
-    }
-  }
-
-  body_pr_node <- xml2::xml_find_first(
-    slidenum_shape,
-    ".//p:txBody//a:bodyPr"
-  )
-
-  lIns <- tIns <- rIns <- bIns <- anchor <- NULL
-
-  if (!inherits(body_pr_node, "xml_missing")) {
-    lIns <- xml2::xml_attr(body_pr_node, "lIns")
-    tIns <- xml2::xml_attr(body_pr_node, "tIns")
-    rIns <- xml2::xml_attr(body_pr_node, "rIns")
-    bIns <- xml2::xml_attr(body_pr_node, "bIns")
-    anchor <- xml2::xml_attr(body_pr_node, "anchor")
-  }
-
-  if ((is.null(anchor) || is.na(anchor)) && !is.null(master_files) && length(master_files) > 0) {
-    master_xml <- xml2::read_xml(master_files[1])
-    master_slidenum <- xml2::xml_find_first(
-      master_xml,
-      ".//p:sp[.//p:ph[@type='sldNum']]"
-    )
-    if (!inherits(master_slidenum, "xml_missing")) {
-      master_body_pr <- xml2::xml_find_first(
-        master_slidenum,
-        ".//p:txBody//a:bodyPr"
-      )
-      if (!inherits(master_body_pr, "xml_missing")) {
-        if (is.null(lIns) || is.na(lIns)) lIns <- xml2::xml_attr(master_body_pr, "lIns")
-        if (is.null(tIns) || is.na(tIns)) tIns <- xml2::xml_attr(master_body_pr, "tIns")
-        if (is.null(rIns) || is.na(rIns)) rIns <- xml2::xml_attr(master_body_pr, "rIns")
-        if (is.null(bIns) || is.na(bIns)) bIns <- xml2::xml_attr(master_body_pr, "bIns")
-        if (is.null(anchor) || is.na(anchor)) anchor <- xml2::xml_attr(master_body_pr, "anchor")
-      }
-    }
-  }
-
-  color <- if (is.null(color)) "50514F" else color
-  font <- if (is.null(font)) "Calibri" else font
-  size <- if (is.null(size)) 1000 else size
-  align <- if (is.null(align)) "r" else align
-
-  lIns <- if (is.null(lIns) || is.na(lIns)) "91425" else lIns
-  tIns <- if (is.null(tIns) || is.na(tIns)) "91425" else tIns
-  rIns <- if (is.null(rIns) || is.na(rIns)) "91425" else rIns
-  bIns <- if (is.null(bIns) || is.na(bIns)) "91425" else bIns
-
-  result <- list(
-    color = color,
-    font = font,
-    size = size,
-    align = align,
-    anchor = anchor,
-    lIns = lIns,
-    tIns = tIns,
-    rIns = rIns,
-    bIns = bIns
-  )
-
-  cat(sprintf(
-    "→ Extracted styling for layout '%s': color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
-    layout_name, color, font, size, align, ifelse(is.null(anchor) || is.na(anchor), "NA", anchor)
-  ))
-
-  result
-}
-
-#' Add dynamic slide numbers to slides
+#' Add dynamic slide numbers to officer presentation object
 #'
-#' Internal function to inject dynamic slide number field codes into PowerPoint
-#' slides after they've been created. This ensures slide numbers appear and
-#' update automatically when slides are reordered.
+#' Adds dynamic slide number field codes to an officer rpptx object before
+#' it's written to disk. Uses officer's slide APIs to add the field codes
+#' directly to the in-memory XML, avoiding unzip/rezip cycle.
 #'
-#' @param pptx_path character. Path to the PPTX file to modify
-#' @param slides list. List of R2PptxSlide objects (to get layout names)
-#' @param template_path character. Path to the template (to get placeholder positions)
+#' @param pptx_obj officer rpptx object
+#' @param slides list of R2PptxSlide objects
+#' @param template_path character. Path to template for style extraction
 #' @param start_slide integer. First slide to add numbers to (default 1)
 #' @keywords internal
-#' @return character. Path to the modified PPTX file
+#' @return Modified officer rpptx object
 add_dynamic_slide_numbers <- function(
-  pptx_path,
+  pptx_obj,
   slides,
   template_path,
   start_slide = 1
 ) {
   if (!requireNamespace("xml2", quietly = TRUE)) {
     warning("xml2 package required for dynamic slide numbers. Skipping.")
-    return(pptx_path)
+    return(pptx_obj)
   }
   if (!requireNamespace("uuid", quietly = TRUE)) {
     warning("uuid package required for dynamic slide numbers. Skipping.")
-    return(pptx_path)
+    return(pptx_obj)
   }
 
-  temp_dir <- tempfile()
-  dir.create(temp_dir)
-  on.exit(unlink(temp_dir, recursive = TRUE))
-
-  utils::unzip(pptx_path, exdir = temp_dir)
-  template_pres <- officer::read_pptx(template_path)
-
   style_cache <- list()
-
   n_slides <- length(slides)
+
   for (slide_idx in start_slide:n_slides) {
-    slide_file <- file.path(temp_dir, "ppt", "slides",
-                           sprintf("slide%d.xml", slide_idx + 1))
-
-    if (!file.exists(slide_file)) {
-      next
-    }
-
     layout_name <- slides[[slide_idx]]@layout
 
+    # Get style for this layout (cached)
     if (is.null(style_cache[[layout_name]])) {
-      style_cache[[layout_name]] <- extract_slidenum_style_from_template(
+      style_cache[[layout_name]] <- extract_slidenum_style(
         template_path,
         layout_name
       )
     }
     style <- style_cache[[layout_name]]
 
+    # Get layout properties using officer
     layout_props <- tryCatch({
-      officer::layout_properties(template_pres, layout = layout_name)
+      officer::layout_properties(pptx_obj, layout = layout_name)
     }, error = function(e) {
-      warning(sprintf("Could not get layout properties for layout '%s': %s",
-                     layout_name, e$message))
+      warning(sprintf(
+        "Could not get layout properties for layout '%s': %s",
+        layout_name, e$message
+      ))
       return(NULL)
     })
 
-    if (is.null(layout_props)) {
-      next
-    }
+    if (is.null(layout_props)) next
 
-    slidenum_rows <- layout_props[
+    # Find slidenum placeholder
+    slidenum_props <- layout_props[
       !is.na(layout_props$fld_type) & layout_props$fld_type == "slidenum",
     ]
 
-    if (nrow(slidenum_rows) == 0) {
-      next
-    }
+    if (nrow(slidenum_props) == 0) next
 
-    slidenum_pos <- slidenum_rows[1, ]
+    # Add slidenum field code using officer's slide API
+    pptx_obj <- add_slidenum_to_slide(
+      pptx_obj,
+      slide_idx = slide_idx + 1,  # officer uses 1-based + 1 for actual slides
+      style = style,
+      slidenum_props = slidenum_props[1, ]
+    )
+  }
 
-    slide_xml <- xml2::read_xml(slide_file)
-    sp_tree <- xml2::xml_find_first(slide_xml, ".//p:spTree")
+  pptx_obj
+}
 
-    if (inherits(sp_tree, "xml_missing")) {
-      next
-    }
 
-    shape_id <- slide_idx + 100
-    field_uuid <- uuid::UUIDgenerate()
+#' Add slide number field code to a single slide
+#' @keywords internal
+add_slidenum_to_slide <- function(pptx_obj, slide_idx, style, slidenum_props) {
+  # Get the slide object using officer's API
+  slide <- pptx_obj$slide$get_slide(slide_idx)
 
-    x_emu <- as.integer(slidenum_pos$offx * 914400)
-    y_emu <- as.integer(slidenum_pos$offy * 914400)
-    cx_emu <- as.integer(slidenum_pos$cx * 914400)
-    cy_emu <- as.integer(slidenum_pos$cy * 914400)
+  # Create the slidenum XML node
+  shape_id <- slide_idx + 100
+  field_uuid <- uuid::UUIDgenerate()
 
-    cat(sprintf(
-      "  → Slide %d: Applying style color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
-      slide_idx, style$color, style$font, style$size, style$align,
-      ifelse(is.null(style$anchor) || is.na(style$anchor), "NA", style$anchor)
-    ))
+  slidenum_xml_string <- create_slidenum_xml(
+    slide_idx = slide_idx - 1,  # Convert back to user-facing numbering
+    style = style,
+    slidenum_props = slidenum_props,
+    shape_id = shape_id,
+    field_uuid = field_uuid
+  )
 
-    anchor_attr <- if (!is.null(style$anchor) && !is.na(style$anchor)) {
-      sprintf(' anchor="%s" anchorCtr="0"', style$anchor)
-    } else {
-      ""
-    }
+  # Parse and add to slide XML
+  node <- xml2::as_xml_document(slidenum_xml_string)
+  slide_xml <- slide$get()
+  sp_tree <- xml2::xml_find_first(slide_xml, ".//p:spTree")
 
-    slidenum_xml_string <- sprintf('
-<p:sp xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
-      xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+  if (!inherits(sp_tree, "xml_missing")) {
+    xml2::xml_add_child(sp_tree, node)
+  }
+
+  pptx_obj
+}
+
+
+#' Create slide number XML element
+#' @keywords internal
+create_slidenum_xml <- function(slide_idx, style, slidenum_props, shape_id, field_uuid) {
+  # Convert inches to EMU (English Metric Units)
+  x_emu <- as.integer(slidenum_props$offx * 914400)
+  y_emu <- as.integer(slidenum_props$offy * 914400)
+  cx_emu <- as.integer(slidenum_props$cx * 914400)
+  cy_emu <- as.integer(slidenum_props$cy * 914400)
+
+  # Apply defaults
+  style <- apply_style_defaults(style)
+
+  # Build anchor attribute only if present
+  anchor_attr <- if (!is.null(style$anchor) && !is.na(style$anchor)) {
+    sprintf(' anchor="%s" anchorCtr="0"', style$anchor)
+  } else {
+    ""
+  }
+
+  cat(sprintf(
+    "  → Slide %d: color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
+    slide_idx, style$color, style$font, style$size, style$align,
+    ifelse(is.null(style$anchor) || is.na(style$anchor), "NA", style$anchor)
+  ))
+
+  sprintf(
+    '<p:sp xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
+           xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
   <p:nvSpPr>
     <p:cNvPr id="%d" name="Slide Number %d"/>
-    <p:cNvSpPr>
-      <a:spLocks noGrp="1"/>
-    </p:cNvSpPr>
-    <p:nvPr>
-      <p:ph type="sldNum" idx="12"/>
-    </p:nvPr>
+    <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
+    <p:nvPr><p:ph type="sldNum" idx="12"/></p:nvPr>
   </p:nvSpPr>
   <p:spPr>
     <a:xfrm>
       <a:off x="%d" y="%d"/>
       <a:ext cx="%d" cy="%d"/>
     </a:xfrm>
-    <a:prstGeom prst="rect">
-      <a:avLst/>
-    </a:prstGeom>
+    <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
   </p:spPr>
   <p:txBody>
     <a:bodyPr spcFirstLastPara="1" wrap="square" lIns="%s" tIns="%s" rIns="%s" bIns="%s"%s>
@@ -340,9 +153,7 @@ add_dynamic_slide_numbers <- function(
       <a:pPr algn="%s"/>
       <a:fld id="{%s}" type="slidenum">
         <a:rPr lang="en-US" sz="%d" baseline="0">
-          <a:solidFill>
-            <a:srgbClr val="%s"/>
-          </a:solidFill>
+          <a:solidFill><a:srgbClr val="%s"/></a:solidFill>
           <a:latin typeface="%s"/>
         </a:rPr>
         <a:t>%d</a:t>
@@ -351,37 +162,167 @@ add_dynamic_slide_numbers <- function(
     </a:p>
   </p:txBody>
 </p:sp>',
-      shape_id,
-      slide_idx,
-      x_emu,
-      y_emu,
-      cx_emu,
-      cy_emu,
-      style$lIns,
-      style$tIns,
-      style$rIns,
-      style$bIns,
-      anchor_attr,
-      style$align,
-      field_uuid,
-      style$size,
-      style$color,
-      style$font,
-      slide_idx
-    )
+    shape_id, slide_idx,
+    x_emu, y_emu, cx_emu, cy_emu,
+    style$lIns, style$tIns, style$rIns, style$bIns, anchor_attr,
+    style$align, field_uuid, style$size, style$color, style$font, slide_idx
+  )
+}
 
-    slidenum_node <- xml2::read_xml(slidenum_xml_string)
-    xml2::xml_add_child(sp_tree, slidenum_node)
-    xml2::write_xml(slide_xml, slide_file)
+
+#' Extract slide number styling from PowerPoint template
+#'
+#' Extracts color, font, size, alignment, and body properties for slide numbers
+#' from a PowerPoint template layout.
+#'
+#' @param template_path character. Path to the PPTX template file
+#' @param layout_name character. Name of the layout
+#' @keywords internal
+#' @return list with styling attributes
+extract_slidenum_style <- function(template_path, layout_name) {
+  temp_dir <- tempfile()
+  dir.create(temp_dir)
+  on.exit(unlink(temp_dir, recursive = TRUE))
+
+  utils::unzip(template_path, exdir = temp_dir)
+
+  layout_idx <- get_layout_index(template_path, layout_name)
+  if (is.null(layout_idx)) return(default_slidenum_style())
+
+  layout_file <- file.path(
+    temp_dir, "ppt", "slideLayouts",
+    sprintf("slideLayout%d.xml", layout_idx)
+  )
+
+  if (!file.exists(layout_file)) return(default_slidenum_style())
+
+  layout_xml <- xml2::read_xml(layout_file)
+  slidenum_shape <- xml2::xml_find_first(
+    layout_xml,
+    ".//p:sp[.//p:ph[@type='sldNum']]"
+  )
+
+  if (inherits(slidenum_shape, "xml_missing")) return(default_slidenum_style())
+
+  # Extract styling
+  text_style <- extract_text_style(slidenum_shape)
+  body_props <- extract_body_properties(slidenum_shape)
+
+  # Check master for missing values
+  master_file <- file.path(temp_dir, "ppt", "slideMasters", "slideMaster1.xml")
+  if (file.exists(master_file)) {
+    text_style <- fill_from_master(text_style, master_file, "text")
+    body_props <- fill_from_master(body_props, master_file, "body")
   }
 
-  output_file <- tempfile(fileext = ".pptx")
-  old_wd <- getwd()
-  setwd(temp_dir)
-  system(sprintf("zip -r -q '%s' .", output_file))
-  setwd(old_wd)
+  style <- c(text_style, body_props)
 
-  file.copy(output_file, pptx_path, overwrite = TRUE)
+  cat(sprintf(
+    "→ Extracted styling for layout '%s': color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
+    layout_name, style$color, style$font, style$size, style$align,
+    ifelse(is.null(style$anchor) || is.na(style$anchor), "NA", style$anchor)
+  ))
 
-  return(pptx_path)
+  style
+}
+
+
+#' Get layout index from template
+#' @keywords internal
+get_layout_index <- function(template_path, layout_name) {
+  pptx_obj <- officer::read_pptx(template_path)
+  layout_summary <- officer::layout_summary(pptx_obj)
+  idx <- which(layout_summary$layout == layout_name)
+  if (length(idx) == 0) {
+    message(sprintf("Layout '%s' not found", layout_name))
+    return(NULL)
+  }
+  idx
+}
+
+
+#' Default slide number styling
+#' @keywords internal
+default_slidenum_style <- function() {
+  list(
+    color = "50514F", font = "Calibri", size = 1000, align = "r",
+    anchor = NULL, lIns = "91425", tIns = "91425", rIns = "91425", bIns = "91425"
+  )
+}
+
+
+#' Extract text styling from slidenum shape
+#' @keywords internal
+extract_text_style <- function(slidenum_shape) {
+  color <- xml2::xml_attr(
+    xml2::xml_find_first(slidenum_shape, ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:solidFill//a:srgbClr"),
+    "val"
+  )
+  font <- xml2::xml_attr(
+    xml2::xml_find_first(slidenum_shape, ".//a:lstStyle//a:lvl1pPr//a:defRPr//a:latin"),
+    "typeface"
+  )
+  size <- as.integer(xml2::xml_attr(
+    xml2::xml_find_first(slidenum_shape, ".//a:lstStyle//a:lvl1pPr//a:defRPr"),
+    "sz"
+  ))
+  align <- xml2::xml_attr(
+    xml2::xml_find_first(slidenum_shape, ".//a:lstStyle//a:lvl1pPr"),
+    "algn"
+  )
+  list(color = color, font = font, size = size, align = align)
+}
+
+
+#' Extract body properties from slidenum shape
+#' @keywords internal
+extract_body_properties <- function(slidenum_shape) {
+  body_pr <- xml2::xml_find_first(slidenum_shape, ".//p:txBody//a:bodyPr")
+  if (inherits(body_pr, "xml_missing")) {
+    return(list(anchor = NULL, lIns = NULL, tIns = NULL, rIns = NULL, bIns = NULL))
+  }
+  list(
+    anchor = xml2::xml_attr(body_pr, "anchor"),
+    lIns = xml2::xml_attr(body_pr, "lIns"),
+    tIns = xml2::xml_attr(body_pr, "tIns"),
+    rIns = xml2::xml_attr(body_pr, "rIns"),
+    bIns = xml2::xml_attr(body_pr, "bIns")
+  )
+}
+
+
+#' Fill missing style values from master slide
+#' @keywords internal
+fill_from_master <- function(style_list, master_file, type = c("text", "body")) {
+  type <- match.arg(type)
+  master_xml <- xml2::read_xml(master_file)
+  master_slidenum <- xml2::xml_find_first(master_xml, ".//p:sp[.//p:ph[@type='sldNum']]")
+
+  if (inherits(master_slidenum, "xml_missing")) return(style_list)
+
+  master_style <- if (type == "text") {
+    extract_text_style(master_slidenum)
+  } else {
+    extract_body_properties(master_slidenum)
+  }
+
+  for (name in names(style_list)) {
+    if (is.null(style_list[[name]]) || is.na(style_list[[name]])) {
+      style_list[[name]] <- master_style[[name]]
+    }
+  }
+  style_list
+}
+
+
+#' Apply defaults to style
+#' @keywords internal
+apply_style_defaults <- function(style) {
+  defaults <- default_slidenum_style()
+  for (name in names(defaults)) {
+    if (is.null(style[[name]]) || is.na(style[[name]])) {
+      style[[name]] <- defaults[[name]]
+    }
+  }
+  style
 }

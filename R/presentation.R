@@ -132,9 +132,8 @@ setMethod(
   function(x, path, add_slide_numbers = TRUE, start_slide = 1) {
     pptx_obj <- officer::read_pptx(path = template_path(x))
 
-    # TODO method to get slides
+    # Add slides and elements using officer
     for (slide in x@slides) {
-      # TODO method to get layout
       pptx_obj <- officer::add_slide(pptx_obj,
                                      layout = slide@layout,
                                      master = pptx_obj$masterLayouts$names()[1])
@@ -142,17 +141,19 @@ setMethod(
         pptx_obj <- append_element(pptx_obj, element)
       }
     }
-    print(pptx_obj, target = path)
 
-    # Add dynamic slide numbers if requested
+    # Add dynamic slide numbers before writing to disk
     if (add_slide_numbers && length(x@slides) > 0) {
-      add_dynamic_slide_numbers(
-        pptx_path = path,
+      pptx_obj <- add_dynamic_slide_numbers(
+        pptx_obj = pptx_obj,
         slides = x@slides,
         template_path = template_path(x),
         start_slide = start_slide
       )
     }
+
+    # Write to disk
+    print(pptx_obj, target = path)
 
     invisible(x)
   }
