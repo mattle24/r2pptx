@@ -122,11 +122,14 @@ setMethod(
 # write pptx --------------------------------------------------------------
 
 #' @describeIn write_pptx Write a presentation to a `.pptx` file
+#' @param add_slide_numbers logical. If TRUE (default), adds dynamic slide
+#'   numbers to slides. Set to FALSE to disable.
+#' @param start_slide integer. First slide to add numbers to (default 1).
 #' @return Returns the \code{R2PptxPresentation} object given to the function.
 setMethod(
   "write_pptx",
   "R2PptxPresentation",
-  function(x, path) {
+  function(x, path, add_slide_numbers = TRUE, start_slide = 1) {
     pptx_obj <- officer::read_pptx(path = template_path(x))
 
     # TODO method to get slides
@@ -140,6 +143,17 @@ setMethod(
       }
     }
     print(pptx_obj, target = path)
+
+    # Add dynamic slide numbers if requested
+    if (add_slide_numbers && length(x@slides) > 0) {
+      add_dynamic_slide_numbers(
+        pptx_path = path,
+        slides = x@slides,
+        template_path = template_path(x),
+        start_slide = start_slide
+      )
+    }
+
     invisible(x)
   }
 )
