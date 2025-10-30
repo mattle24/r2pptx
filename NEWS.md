@@ -1,16 +1,9 @@
-# r2pptx 0.1.0.9002 (development)
+# r2pptx 0.1.0.9002 
 
-* Added dynamic slide numbers feature (#TBD)
+* Added dynamic slide numbers feature
 
-  * `write_pptx()` now automatically adds dynamic slide number field codes to slides
+  * `write_pptx()` adds dynamic slide numbers (using PowerPoint field codes) to slides by default using `add_slide_numbers`.
 
-  * New parameter `add_slide_numbers` (default TRUE) to enable/disable slide numbers
-
-  * New parameter `start_slide` (default 1) to control which slide to start numbering from
-
-  * Slide numbers use PowerPoint field codes, so they update automatically when slides are reordered
-
-  * Works with Google Slides after upload/conversion
 
 # r2pptx 0.1.0.9001
 
