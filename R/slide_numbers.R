@@ -1,37 +1,25 @@
-#' Add dynamic slide numbers to officer presentation object
+#' Slide numbers
 #'
-#' Adds dynamic slide number field codes to an officer rpptx object before
-#' it's written to disk. Uses officer's slide APIs to add the field codes
-#' directly to the in-memory XML, avoiding unzip/rezip cycle.
+#' Adds dynamic slide number field codes to an officer rpptx object 
 #'
 #' @param pptx_obj officer rpptx object
-#' @param slides list of R2PptxSlide objects
-#' @param template_path character. Path to template for style extraction
+#' @param slides list. List of \code{R2PptxSlide} objects
+#' @param template_path character. Path of the file that has the PowerPoint
 #' @param start_slide integer. First slide to add numbers to (default 1)
 #' @keywords internal
-#' @return Modified officer rpptx object
+#' @return officer rpptx object with slide numbers added
 add_dynamic_slide_numbers <- function(
   pptx_obj,
   slides,
   template_path,
   start_slide = 1
 ) {
-  if (!requireNamespace("xml2", quietly = TRUE)) {
-    warning("xml2 package required for dynamic slide numbers. Skipping.")
-    return(pptx_obj)
-  }
-  if (!requireNamespace("uuid", quietly = TRUE)) {
-    warning("uuid package required for dynamic slide numbers. Skipping.")
-    return(pptx_obj)
-  }
-
   style_cache <- list()
   n_slides <- length(slides)
 
   for (slide_idx in start_slide:n_slides) {
     layout_name <- slides[[slide_idx]]@layout
 
-    # Get style for this layout (cached)
     if (is.null(style_cache[[layout_name]])) {
       style_cache[[layout_name]] <- extract_slidenum_style(
         template_path,
@@ -40,7 +28,6 @@ add_dynamic_slide_numbers <- function(
     }
     style <- style_cache[[layout_name]]
 
-    # Get layout properties using officer
     layout_props <- tryCatch({
       officer::layout_properties(pptx_obj, layout = layout_name)
     }, error = function(e) {
@@ -53,17 +40,15 @@ add_dynamic_slide_numbers <- function(
 
     if (is.null(layout_props)) next
 
-    # Find slidenum placeholder
     slidenum_props <- layout_props[
       !is.na(layout_props$fld_type) & layout_props$fld_type == "slidenum",
     ]
 
     if (nrow(slidenum_props) == 0) next
 
-    # Add slidenum field code using officer's slide API
     pptx_obj <- add_slidenum_to_slide(
       pptx_obj,
-      slide_idx = slide_idx + 1,  # officer uses 1-based + 1 for actual slides
+      slide_idx = slide_idx + 1,
       style = style,
       slidenum_props = slidenum_props[1, ]
     )
@@ -76,22 +61,19 @@ add_dynamic_slide_numbers <- function(
 #' Add slide number field code to a single slide
 #' @keywords internal
 add_slidenum_to_slide <- function(pptx_obj, slide_idx, style, slidenum_props) {
-  # Get the slide object using officer's API
   slide <- pptx_obj$slide$get_slide(slide_idx)
 
-  # Create the slidenum XML node
   shape_id <- slide_idx + 100
   field_uuid <- uuid::UUIDgenerate()
 
   slidenum_xml_string <- create_slidenum_xml(
-    slide_idx = slide_idx - 1,  # Convert back to user-facing numbering
+    slide_idx = slide_idx - 1,
     style = style,
     slidenum_props = slidenum_props,
     shape_id = shape_id,
     field_uuid = field_uuid
   )
 
-  # Parse and add to slide XML
   node <- xml2::as_xml_document(slidenum_xml_string)
   slide_xml <- slide$get()
   sp_tree <- xml2::xml_find_first(slide_xml, ".//p:spTree")
@@ -107,61 +89,53 @@ add_slidenum_to_slide <- function(pptx_obj, slide_idx, style, slidenum_props) {
 #' Create slide number XML element
 #' @keywords internal
 create_slidenum_xml <- function(slide_idx, style, slidenum_props, shape_id, field_uuid) {
-  # Convert inches to EMU (English Metric Units)
+  # Convert inches to English Metric Units for XML
   x_emu <- as.integer(slidenum_props$offx * 914400)
   y_emu <- as.integer(slidenum_props$offy * 914400)
   cx_emu <- as.integer(slidenum_props$cx * 914400)
   cy_emu <- as.integer(slidenum_props$cy * 914400)
 
-  # Apply defaults
   style <- apply_style_defaults(style)
 
-  # Build anchor attribute only if present
   anchor_attr <- if (!is.null(style$anchor) && !is.na(style$anchor)) {
     sprintf(' anchor="%s" anchorCtr="0"', style$anchor)
   } else {
     ""
   }
 
-  cat(sprintf(
-    "  → Slide %d: color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
-    slide_idx, style$color, style$font, style$size, style$align,
-    ifelse(is.null(style$anchor) || is.na(style$anchor), "NA", style$anchor)
-  ))
-
   sprintf(
     '<p:sp xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
            xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
-  <p:nvSpPr>
-    <p:cNvPr id="%d" name="Slide Number %d"/>
-    <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
-    <p:nvPr><p:ph type="sldNum" idx="12"/></p:nvPr>
-  </p:nvSpPr>
-  <p:spPr>
-    <a:xfrm>
-      <a:off x="%d" y="%d"/>
-      <a:ext cx="%d" cy="%d"/>
-    </a:xfrm>
-    <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
-  </p:spPr>
-  <p:txBody>
-    <a:bodyPr spcFirstLastPara="1" wrap="square" lIns="%s" tIns="%s" rIns="%s" bIns="%s"%s>
-      <a:normAutofit/>
-    </a:bodyPr>
-    <a:lstStyle/>
-    <a:p>
-      <a:pPr algn="%s"/>
-      <a:fld id="{%s}" type="slidenum">
-        <a:rPr lang="en-US" sz="%d" baseline="0">
-          <a:solidFill><a:srgbClr val="%s"/></a:solidFill>
-          <a:latin typeface="%s"/>
-        </a:rPr>
-        <a:t>%d</a:t>
-      </a:fld>
-      <a:endParaRPr lang="en-US"/>
-    </a:p>
-  </p:txBody>
-</p:sp>',
+    <p:nvSpPr>
+      <p:cNvPr id="%d" name="Slide Number %d"/>
+      <p:cNvSpPr><a:spLocks noGrp="1"/></p:cNvSpPr>
+      <p:nvPr><p:ph type="sldNum" idx="12"/></p:nvPr>
+    </p:nvSpPr>
+    <p:spPr>
+      <a:xfrm>
+        <a:off x="%d" y="%d"/>
+        <a:ext cx="%d" cy="%d"/>
+      </a:xfrm>
+      <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+    </p:spPr>
+    <p:txBody>
+      <a:bodyPr spcFirstLastPara="1" wrap="square" lIns="%s" tIns="%s" rIns="%s" bIns="%s"%s>
+        <a:normAutofit/>
+      </a:bodyPr>
+      <a:lstStyle/>
+      <a:p>
+        <a:pPr algn="%s"/>
+        <a:fld id="{%s}" type="slidenum">
+          <a:rPr lang="en-US" sz="%d" baseline="0">
+            <a:solidFill><a:srgbClr val="%s"/></a:solidFill>
+            <a:latin typeface="%s"/>
+          </a:rPr>
+          <a:t>%d</a:t>
+        </a:fld>
+        <a:endParaRPr lang="en-US"/>
+      </a:p>
+    </p:txBody>
+  </p:sp>',
     shape_id, slide_idx,
     x_emu, y_emu, cx_emu, cy_emu,
     style$lIns, style$tIns, style$rIns, style$bIns, anchor_attr,
@@ -170,13 +144,10 @@ create_slidenum_xml <- function(slide_idx, style, slidenum_props, shape_id, fiel
 }
 
 
-#' Extract slide number styling from PowerPoint template
+#' Extract slide number styling (color, font, size, alignment, and body properties) from PowerPoint template
 #'
-#' Extracts color, font, size, alignment, and body properties for slide numbers
-#' from a PowerPoint template layout.
-#'
-#' @param template_path character. Path to the PPTX template file
-#' @param layout_name character. Name of the layout
+#' @param template_path character. Path of the file that has the PowerPoint
+#' @param layout_name character. name of the layout
 #' @keywords internal
 #' @return list with styling attributes
 extract_slidenum_style <- function(template_path, layout_name) {
@@ -186,7 +157,10 @@ extract_slidenum_style <- function(template_path, layout_name) {
 
   utils::unzip(template_path, exdir = temp_dir)
 
-  layout_idx <- get_layout_index(template_path, layout_name)
+  pptx_obj <- officer::read_pptx(template_path)
+  layout_summary <- officer::layout_summary(pptx_obj)
+  layout_idx <- which(layout_summary$layout == layout_name)
+
   if (is.null(layout_idx)) return(default_slidenum_style())
 
   layout_file <- file.path(
@@ -204,7 +178,6 @@ extract_slidenum_style <- function(template_path, layout_name) {
 
   if (inherits(slidenum_shape, "xml_missing")) return(default_slidenum_style())
 
-  # Extract styling
   text_style <- extract_text_style(slidenum_shape)
   body_props <- extract_body_properties(slidenum_shape)
 
@@ -215,39 +188,7 @@ extract_slidenum_style <- function(template_path, layout_name) {
     body_props <- fill_from_master(body_props, master_file, "body")
   }
 
-  style <- c(text_style, body_props)
-
-  cat(sprintf(
-    "→ Extracted styling for layout '%s': color=%s, font=%s, size=%d, align=%s, anchor=%s\n",
-    layout_name, style$color, style$font, style$size, style$align,
-    ifelse(is.null(style$anchor) || is.na(style$anchor), "NA", style$anchor)
-  ))
-
-  style
-}
-
-
-#' Get layout index from template
-#' @keywords internal
-get_layout_index <- function(template_path, layout_name) {
-  pptx_obj <- officer::read_pptx(template_path)
-  layout_summary <- officer::layout_summary(pptx_obj)
-  idx <- which(layout_summary$layout == layout_name)
-  if (length(idx) == 0) {
-    message(sprintf("Layout '%s' not found", layout_name))
-    return(NULL)
-  }
-  idx
-}
-
-
-#' Default slide number styling
-#' @keywords internal
-default_slidenum_style <- function() {
-  list(
-    color = "50514F", font = "Calibri", size = 1000, align = "r",
-    anchor = NULL, lIns = "91425", tIns = "91425", rIns = "91425", bIns = "91425"
-  )
+  return(c(text_style, body_props))
 }
 
 
@@ -280,14 +221,17 @@ extract_body_properties <- function(slidenum_shape) {
   body_pr <- xml2::xml_find_first(slidenum_shape, ".//p:txBody//a:bodyPr")
   if (inherits(body_pr, "xml_missing")) {
     return(list(anchor = NULL, lIns = NULL, tIns = NULL, rIns = NULL, bIns = NULL))
+  } else {
+    return(
+      list(
+        anchor = xml2::xml_attr(body_pr, "anchor"),
+        lIns = xml2::xml_attr(body_pr, "lIns"),
+        tIns = xml2::xml_attr(body_pr, "tIns"),
+        rIns = xml2::xml_attr(body_pr, "rIns"),
+        bIns = xml2::xml_attr(body_pr, "bIns")
+      )
+    )
   }
-  list(
-    anchor = xml2::xml_attr(body_pr, "anchor"),
-    lIns = xml2::xml_attr(body_pr, "lIns"),
-    tIns = xml2::xml_attr(body_pr, "tIns"),
-    rIns = xml2::xml_attr(body_pr, "rIns"),
-    bIns = xml2::xml_attr(body_pr, "bIns")
-  )
 }
 
 
@@ -312,6 +256,16 @@ fill_from_master <- function(style_list, master_file, type = c("text", "body")) 
     }
   }
   style_list
+}
+
+
+#' Default slide number styling
+#' @keywords internal
+default_slidenum_style <- function() {
+  list(
+    color = "50514F", font = "Calibri", size = 1000, align = "r",
+    anchor = NULL, lIns = "91425", tIns = "91425", rIns = "91425", bIns = "91425"
+  )
 }
 
 
