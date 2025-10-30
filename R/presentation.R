@@ -122,9 +122,8 @@ setMethod(
 # write pptx --------------------------------------------------------------
 
 #' @describeIn write_pptx Write a presentation to a `.pptx` file
-#' @param add_slide_numbers logical. If TRUE (default), adds dynamic slide
-#'   numbers to slides. Set to FALSE to disable.
-#' @param start_slide integer. First slide to add numbers to (default 1).
+#' @param add_slide_numbers logical. Default TRUE. Adds dynamic slide numbers
+#' @param start_slide integer. Default 1. First slide to add slide numbers to
 #' @return Returns the \code{R2PptxPresentation} object given to the function.
 setMethod(
   "write_pptx",
@@ -132,8 +131,9 @@ setMethod(
   function(x, path, add_slide_numbers = TRUE, start_slide = 1) {
     pptx_obj <- officer::read_pptx(path = template_path(x))
 
-    # Add slides and elements using officer
+    # TODO method to get slides
     for (slide in x@slides) {
+      # TODO method to get layout
       pptx_obj <- officer::add_slide(pptx_obj,
                                      layout = slide@layout,
                                      master = pptx_obj$masterLayouts$names()[1])
@@ -142,7 +142,7 @@ setMethod(
       }
     }
 
-    # Add dynamic slide numbers before writing to disk
+    # Add dynamic slide numbers
     if (add_slide_numbers && length(x@slides) > 0) {
       pptx_obj <- add_dynamic_slide_numbers(
         pptx_obj = pptx_obj,
@@ -152,9 +152,7 @@ setMethod(
       )
     }
 
-    # Write to disk
     print(pptx_obj, target = path)
-
     invisible(x)
   }
 )
