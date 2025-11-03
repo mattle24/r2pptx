@@ -138,6 +138,11 @@ setMethod(
       for (element in slide@elements) {
         pptx_obj <- append_element(pptx_obj, element)
       }
+      pptx_obj <- officer::ph_with(
+        x = pptx_obj,
+        value = officer::empty_content(),
+        location = officer::ph_location_type(type = "sldNum")
+      )
     }
     print(pptx_obj, target = path)
     invisible(x)
