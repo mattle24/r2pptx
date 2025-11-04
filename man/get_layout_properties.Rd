@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_layout_properties}
 \alias{get_layout_properties}
-\title{Gets layout properties}
+\title{Get layout properties}
 \usage{
 get_layout_properties(x, layout)
 }

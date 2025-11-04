@@ -22,6 +22,6 @@ Write an object to a `.pptx` file.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{R2PptxPresentation}: Write a presentation to a `.pptx` file
-}}
+\item \code{write_pptx(R2PptxPresentation)}: Write a presentation to a `.pptx` file
 
+}}

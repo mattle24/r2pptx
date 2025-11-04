@@ -14,7 +14,7 @@ URL: https://mattle24.github.io/r2pptx/, https://github.com/mattle24/r2pptx
 BugReports: https://github.com/mattle24/r2pptx/issues
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Depends:
     methods,
     R (>= 3.6.0)

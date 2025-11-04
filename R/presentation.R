@@ -1,3 +1,7 @@
+#' @keywords internal
+#' @noRd
+.DEFAULT_PPT_TEMPLATE <- system.file(package = "officer", "template/template.pptx")
+
 #' @include slide.R
 #' @include generics.R
 NULL
@@ -49,7 +53,7 @@ new_presentation <- function(
   template_path = getOption("default_pptx_template"),
   slides = list()
 ) {
-  if (class(slides) != "list") {
+  if (!is(slides, "list")) {
     slides <- list(slides)
   }
   new(
@@ -128,6 +132,8 @@ setMethod(
   "R2PptxPresentation",
   function(x, path) {
     pptx_obj <- officer::read_pptx(path = template_path(x))
+    layout_properties <- .officer_get_all_layout_properties(pptx_obj)
+    layouts_with_slide_numbers <- unique(layout_properties[layout_properties$type == "sldNum", "name"])
 
     # TODO method to get slides
     for (slide in x@slides) {
@@ -138,11 +144,13 @@ setMethod(
       for (element in slide@elements) {
         pptx_obj <- append_element(pptx_obj, element)
       }
-      pptx_obj <- officer::ph_with(
-        x = pptx_obj,
-        value = officer::empty_content(),
-        location = officer::ph_location_type(type = "sldNum")
-      )
+      if (slide@layout %in% layouts_with_slide_numbers) {
+        pptx_obj <- officer::ph_with(
+          x = pptx_obj,
+          value = officer::empty_content(),
+          location = officer::ph_location_type(type = "sldNum")
+        )
+      }
     }
     print(pptx_obj, target = path)
     invisible(x)

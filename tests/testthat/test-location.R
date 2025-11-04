@@ -3,7 +3,7 @@ test_that("location works on character input", {
     key = "Title 1",
     value = "Some text"
   )
-  presentation <- new_presentation() +
+  presentation <- new_presentation(.DEFAULT_PPT_TEMPLATE) +
     new_slide("Title Slide", elements = list(element))
   path <- tempfile(fileext = ".pptx")
   write_pptx(presentation, path)
@@ -17,7 +17,7 @@ test_that("location works on R2PptxLocation input", {
     key = element_location,
     value = "Some text"
   )
-  presentation <- new_presentation() +
+  presentation <- new_presentation(.DEFAULT_PPT_TEMPLATE) +
     new_slide("Title Slide", elements = list(element))
   path <- tempfile(fileext = ".pptx")
   write_pptx(presentation, path)
