@@ -20,7 +20,7 @@ Get template path
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{R2PptxPresentation}: Get the template path of an
+\item \code{template_path(R2PptxPresentation)}: Get the template path of an
 \code{R2PptxPresentation} object.
-}}
 
+}}

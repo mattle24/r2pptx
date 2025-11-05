@@ -23,7 +23,7 @@ Set template path
 }
 \section{Functions}{
 \itemize{
-\item \code{template_path<-,R2PptxPresentation-method}: Set the template path of an \code{R2PptxPresentation}
+\item \code{template_path(R2PptxPresentation) <- value}: Set the template path of an \code{R2PptxPresentation}
 object.
-}}
 
+}}
