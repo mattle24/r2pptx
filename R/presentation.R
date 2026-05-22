@@ -151,6 +151,13 @@ setMethod(
       for (element in slide@elements) {
         pptx_obj <- append_element(pptx_obj, element)
       }
+      if (length(slide@notes) > 0 && nzchar(slide@notes)) {
+        pptx_obj <- officer::set_notes(
+          pptx_obj,
+          value = slide@notes,
+          location = officer::notes_location_type("body")
+        )
+      }
       if (slide@layout %in% layouts_with_slide_numbers) {
         pptx_obj <- officer::ph_with(
           x = pptx_obj,

@@ -4,7 +4,7 @@
 \alias{new_slide}
 \title{New slide}
 \usage{
-new_slide(layout, elements = list())
+new_slide(layout, elements = list(), notes = NULL)
 }
 \arguments{
 \item{layout}{character. Name of the PowerPoint layout to use for this
@@ -12,6 +12,12 @@ slide.}
 
 \item{elements}{list. List of `R2PptxElements` to initialize the slide with.
 Defaults to empty list.}
+
+\item{notes}{character. Optional speaker notes for the slide. A single
+string; `NULL` (the default) leaves the slide's notes empty. Speaker
+notes round-trip through Google Drive's pptx → Slides conversion, so
+notes set here will appear in the Google Slides notes panel after
+upload.}
 }
 \value{
 An object of class \code{R2PptxSlide} representing a future
