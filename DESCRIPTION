@@ -1,12 +1,16 @@
 Package: r2pptx
 Type: Package
 Title: Object Oriented R -> PowerPoint
-Version: 0.1.0.9002
+Version: 0.1.0.9003
 Authors@R:
     c(person(given = "Matt",
              family = "Lehman",
              role = c("aut", "cre"),
-             email = "mhlehman24@gmail.com")
+             email = "mhlehman24@gmail.com"),
+      person(given = "Ari",
+             family = "Lewenstein",
+             role = "ctb",
+             email = "alewenstein@gmail.com")
     )
 Description: Provides a friendly, object oriented API for creating PowerPoint
     slide decks in R.
