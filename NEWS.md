@@ -1,6 +1,6 @@
 # r2pptx 0.1.0.\*
 
--   Add optional `notes` argument to `new_slide()` for attaching speaker notes to a slide. Notes are written into the pptx's notes slide via `officer::set_notes()` and round-trip through Google Drive's pptx → Google Slides conversion.
+-   Add optional `notes` argument to `new_slide()` for attaching speaker notes to a slide. Notes are written into the pptx's notes slide via `officer::set_notes()`.
 
 -   Add empty content to slides when writing presentation to use auto-numbered slides (see [officer:429](https://github.com/davidgohel/officer/pull/429))
 
