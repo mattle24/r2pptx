@@ -14,5 +14,8 @@ An S4 class to represent a PowerPoint slide
 slide.}
 
 \item{\code{elements}}{list. List of `R2PptxElement` objects.}
+
+\item{\code{notes}}{character. Speaker notes for the slide. Length 0 means no
+notes; otherwise a length-1 character.}
 }}
 

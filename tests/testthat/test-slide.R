@@ -95,6 +95,47 @@ describe("new_slide", {
 })
 
 
+describe("new_slide notes", {
+  it("defaults to no notes when `notes` is not supplied", {
+    slide <- new_slide(layout = "test")
+    expect_equal(slide@notes, character(0))
+  })
+  it("stores a length-1 character `notes` argument", {
+    slide <- new_slide(layout = "test", notes = "hello")
+    expect_equal(slide@notes, "hello")
+  })
+  it("accepts NULL as an explicit empty value", {
+    slide <- new_slide(layout = "test", notes = NULL)
+    expect_equal(slide@notes, character(0))
+  })
+  it("fails when `notes` is a multi-element character vector", {
+    expect_error(
+      new_slide(layout = "test", notes = c("a", "b")),
+      regexp = "must be a length-1 character"
+    )
+  })
+  it("fails when `notes` is not a character", {
+    expect_error(
+      new_slide(layout = "test", notes = 42),
+      regexp = "must be a length-1 character"
+    )
+  })
+})
+
+
+describe("show R2PptxSlide with notes", {
+  it("indicates when speaker notes are present", {
+    slide <- new_slide(
+      layout = "test",
+      elements = list(new_element("x", "x")),
+      notes = "talking points"
+    )
+    msg <- capture.output(print(slide))
+    expect_true(any(grepl("with speaker notes", msg)))
+  })
+})
+
+
 describe("new_slidelist", {
   it("works with empty call", {
     x <- new_slidelist()

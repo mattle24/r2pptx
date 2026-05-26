@@ -9,13 +9,19 @@ NULL
 #' @slot layout character. Name of the PowerPoint layout to use for this
 #'   slide.
 #' @slot elements list. List of `R2PptxElement` objects.
+#' @slot notes character. Speaker notes for the slide. Length 0 means no
+#'   notes; otherwise a length-1 character.
 #' @export
 setClass(
   "R2PptxSlide",
   contains = "R2Pptx",
   slots = c(
     layout = "character",
-    elements = "list"
+    elements = "list",
+    notes = "character"
+  ),
+  prototype = list(
+    notes = character(0)
   )
 )
 
@@ -26,11 +32,17 @@ setMethod(
   "R2PptxSlide",
   function(object) {
     element_types <- sapply(object@elements, function(x) class(x@value)[1])
+    notes_suffix <- if (length(object@notes) > 0 && nzchar(object@notes)) {
+      " (with speaker notes)"
+    } else {
+      ""
+    }
     cat(glue::glue(
-      "Slide with layout `{l}` and {n} elements:\n",
+      "Slide with layout `{l}` and {n} elements{s}:\n",
       paste("- ", element_types, collapse = "\n"),
       l = object@layout,
-      n = length(object)
+      n = length(object),
+      s = notes_suffix
     ))
   }
 )
@@ -43,17 +55,27 @@ setMethod(
 #'   slide.
 #' @param elements list. List of `R2PptxElements` to initialize the slide with.
 #'   Defaults to empty list.
+#' @param notes character. Optional speaker notes for the slide. A single
+#'   string; `NULL` (the default) leaves the slide's notes empty. Speaker
+#'   notes round-trip through Google Drive's pptx → Slides conversion, so
+#'   notes set here will appear in the Google Slides notes panel after
+#'   upload.
 #' @export
 #' @return An object of class \code{R2PptxSlide} representing a future
 #'   PowerPoint slide.
-new_slide <- function(layout, elements = list()) {
+new_slide <- function(layout, elements = list(), notes = NULL) {
   if (missing(layout)) {
     stop("`layout` was missing. See `officer::plot_layout_properties()` for key options.")
   }
   if (is(elements, "R2PptxElement")) {
     elements <- list(elements)
   }
-  new("R2PptxSlide", layout = layout, elements = elements)
+  if (is.null(notes)) {
+    notes <- character(0)
+  } else if (!is.character(notes) || length(notes) != 1) {
+    stop("`notes` must be a length-1 character string, or `NULL`.")
+  }
+  new("R2PptxSlide", layout = layout, elements = elements, notes = notes)
 }
 
 

@@ -46,6 +46,36 @@ describe("add slide", {
   })
 })
 
+describe("speaker notes", {
+  it("writes notes into the pptx when supplied", {
+    presentation <- new_presentation(.DEFAULT_PPT_TEMPLATE()) +
+      new_slide("Title Slide", notes = "speaker note for slide one") +
+      new_slide("Title Slide")
+    path <- tempfile(fileext = ".pptx")
+    write_pptx(presentation, path)
+
+    # pptx is a zip archive. Verify the notesSlide part exists and contains
+    # the expected text for slide 1, and that no notesSlide was added for slide 2.
+    entries <- utils::unzip(path, list = TRUE)$Name
+    notes_entries <- grep("ppt/notesSlides/notesSlide[0-9]+\\.xml$", entries, value = TRUE)
+    expect_length(notes_entries, 1)
+
+    notes_xml <- readLines(unz(path, notes_entries[[1]]), warn = FALSE)
+    expect_true(any(grepl("speaker note for slide one", notes_xml, fixed = TRUE)))
+  })
+
+  it("writes no notesSlide when no slide has notes", {
+    presentation <- new_presentation(.DEFAULT_PPT_TEMPLATE()) +
+      new_slide("Title Slide")
+    path <- tempfile(fileext = ".pptx")
+    write_pptx(presentation, path)
+
+    entries <- utils::unzip(path, list = TRUE)$Name
+    notes_entries <- grep("ppt/notesSlides/notesSlide[0-9]+\\.xml$", entries, value = TRUE)
+    expect_length(notes_entries, 0)
+  })
+})
+
 describe("slide numbers", {
   it("adds slide numbers when template has them", {
     skip_if_not(interactive())
