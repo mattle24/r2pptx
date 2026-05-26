@@ -26,11 +26,23 @@ reference:
 - title: Utility functions
   contents:
   - get_layout_properties
+  - get_all_layout_properties
   - get_layouts
   - plot_layout
   - template_path
   - template_path<-
   - write_pptx
+
+- title: Methods
+  contents:
+  - get_slides,R2PptxSlideList-method
+  - length,R2PptxSlide-method
+  - new_element,R2PptxLocation-method
+  - new_element,character-method
+  - +,R2Pptx,R2PptxSlide-method
+  - +,R2PptxSlide,R2PptxElement-method
+  - +,R2PptxSlide,R2PptxSlideList-method
+  - +,R2PptxSlideList,R2PptxSlideList-method
 
 - title: Classes
   contents:
